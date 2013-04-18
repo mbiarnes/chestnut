@@ -1,2 +1,3 @@
 02.txt
 added a line by michaelTest
+added a new line by michaelTest
