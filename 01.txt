@@ -1,3 +1,6 @@
 added 01.txt
 one line added
+and modiifed
+and modified
+and mofified
 ooo
