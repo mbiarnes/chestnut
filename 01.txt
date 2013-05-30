@@ -1,8 +1,1 @@
-added 01.txt
-one line added
-ooo ddd
-and modiifed
-and modified
-and mofified
-ooo
-version 6.0.0.Beta3
+1st file
