@@ -1,4 +1,6 @@
-03.txt
-z
-x
-c
+Das ist der dritte Eintrag fuer den commit
+3
+3
+3
+3
+3
