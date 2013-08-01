@@ -299,7 +299,7 @@ echo "</module>">> $MODULE_CAMEL/main/module.xml
 # Generate library module for commons-math
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_COMMONS_MATH/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/commons/math">' >> $MODULE_COMMONS_MATH/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.commons.math">' >> $MODULE_COMMONS_MATH/main/module.xml
 echo "  <resources>" >> $MODULE_COMMONS_MATH/main/module.xml
 find $MODULE_COMMONS_MATH/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_COMMONS_MATH/main/module.xml
 echo "  </resources>">> $MODULE_COMMONS_MATH/main/module.xml
@@ -310,7 +310,7 @@ echo "</module>">> $MODULE_COMMONS_MATH/main/module.xml
 # Generate library module for helix
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_HELIX/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/helix">' >> $MODULE_HELIX/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.helix">' >> $MODULE_HELIX/main/module.xml
 echo "  <resources>" >> $MODULE_HELIX/main/module.xml
 find $MODULE_HELIX/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_HELIX/main/module.xml
 echo "  </resources>">> $MODULE_HELIX/main/module.xml
@@ -321,7 +321,7 @@ echo "</module>">> $MODULE_HELIX/main/module.xml
 # Generate library module for lucene
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_LUCENE/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/lucene">' >> $MODULE_LUCENE/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.lucene">' >> $MODULE_LUCENE/main/module.xml
 echo "  <resources>" >> $MODULE_LUCENE/main/module.xml
 find $MODULE_LUCENE/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_LUCENE/main/module.xml
 echo "  </resources>">> $MODULE_LUCENE/main/module.xml
@@ -332,7 +332,7 @@ echo "</module>">> $MODULE_LUCENE/main/module.xml
 # Generate library module for jgit
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_JGIT/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/eclipse/jgit">' >> $MODULE_JGIT/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.eclipse.jgit">' >> $MODULE_JGIT/main/module.xml
 echo "  <resources>" >> $MODULE_JGIT/main/module.xml
 find $MODULE_JGIT/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_JGIT/main/module.xml
 echo "  </resources>">> $MODULE_JGIT/main/module.xml
@@ -343,7 +343,7 @@ echo "</module>">> $MODULE_JGIT/main/module.xml
 # Generate library module for wagon
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_WAGON/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/maven/wagon">' >> $MODULE_WAGON/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.maven.wagon">' >> $MODULE_WAGON/main/module.xml
 echo "  <resources>" >> $MODULE_WAGON/main/module.xml
 find $MODULE_WAGON/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_WAGON/main/module.xml
 echo "  </resources>">> $MODULE_WAGON/main/module.xml
@@ -353,7 +353,7 @@ echo "</module>">> $MODULE_WAGON/main/module.xml
 # Generate library module for zookeeper
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_ZOOKEEPER/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/zookeeper">' >> $MODULE_ZOOKEEPER/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.zookeeper">' >> $MODULE_ZOOKEEPER/main/module.xml
 echo "  <resources>" >> $MODULE_ZOOKEEPER/main/module.xml
 find $MODULE_ZOOKEEPER/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_ZOOKEEPER/main/module.xml
 echo "  </resources>">> $MODULE_ZOOKEEPER/main/module.xml
@@ -375,7 +375,7 @@ echo "</module>">> $MODULE_AETHER/main/module.xml
 # Generate library module for ant
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_ANT/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/ant">' >> $MODULE_ANT/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.ant">' >> $MODULE_ANT/main/module.xml
 echo "  <resources>" >> $MODULE_ANT/main/module.xml
 find $MODULE_ANT/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_ANT/main/module.xml
 echo "  </resources>">> $MODULE_ANT/main/module.xml
@@ -397,7 +397,7 @@ echo "</module>">> $MODULE_MAVEN/main/module.xml
 # Generate library module for mvel
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_MVEL/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/mvel">' >> $MODULE_MVEL/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.mvel">' >> $MODULE_MVEL/main/module.xml
 echo "  <resources>" >> $MODULE_MVEL/main/module.xml
 find $MODULE_MVEL/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_MVEL/main/module.xml
 echo "  </resources>">> $MODULE_MVEL/main/module.xml
@@ -408,7 +408,7 @@ echo "</module>">> $MODULE_MVEL/main/module.xml
 # Generate library module for sonatype/plexus
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_sonPLEXUS/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/sonatype/plexus">' >> $MODULE_sonPLEXUS/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.sonatype.plexus">' >> $MODULE_sonPLEXUS/main/module.xml
 echo "  <resources>" >> $MODULE_sonPLEXUS/main/module.xml
 find $MODULE_sonPLEXUS/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_sonPLEXUS/main/module.xml
 echo "  </resources>">> $MODULE_sonPLEXUS/main/module.xml
@@ -419,7 +419,7 @@ echo "</module>">> $MODULE_sonPLEXUS/main/module.xml
 # Generate library module for codehouse/plexus
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_codePLEXUS/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/codehouse/plexus">' >> $MODULE_codePLEXUS/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.codehouse.plexus">' >> $MODULE_codePLEXUS/main/module.xml
 echo "  <resources>" >> $MODULE_codePLEXUS/main/module.xml
 find $MODULE_codePLEXUS/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_codePLEXUS/main/module.xml
 echo "  </resources>">> $MODULE_codePLEXUS/main/module.xml
@@ -430,7 +430,7 @@ echo "</module>">> $MODULE_codePLEXUS/main/module.xml
 # Generate library module for poi
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_POI/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/poi">' >> $MODULE_POI/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.poi">' >> $MODULE_POI/main/module.xml
 echo "  <resources>" >> $MODULE_POI/main/module.xml
 find $MODULE_POI/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_POI/main/module.xml
 echo "  </resources>">> $MODULE_POI/main/module.xml
@@ -452,7 +452,7 @@ echo "</module>">> $MODULE_PROTOBUF/main/module.xml
 # Generate library module for sisu
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_SISU/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/sonatype/sisu">' >> $MODULE_SISU/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.sonatype.sisu">' >> $MODULE_SISU/main/module.xml
 echo "  <resources>" >> $MODULE_SISU/main/module.xml
 find $MODULE_SISU/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_SISU/main/module.xml
 echo "  </resources>">> $MODULE_SISU/main/module.xml
@@ -463,7 +463,7 @@ echo "</module>">> $MODULE_SISU/main/module.xml
 # Generate library module for sonatype/maven
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_sonaMAVEN/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/sonatype/maven">' >> $MODULE_sonaMAVEN/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.sonatype.maven">' >> $MODULE_sonaMAVEN/main/module.xml
 echo "  <resources>" >> $MODULE_sonaMAVEN/main/module.xml
 find $MODULE_sonaMAVEN/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_sonaMAVEN/main/module.xml
 echo "  </resources>">> $MODULE_sonaMAVEN/main/module.xml
@@ -474,7 +474,7 @@ echo "</module>">> $MODULE_sonaMAVEN/main/module.xml
 # Generate library module for compress
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_COMPRESS/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/commons/compress">' >> $MODULE_COMPRESS/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.commons.compress">' >> $MODULE_COMPRESS/main/module.xml
 echo "  <resources>" >> $MODULE_COMPRESS/main/module.xml
 find $MODULE_COMPRESS/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_COMPRESS/main/module.xml
 echo "  </resources>">> $MODULE_COMPRESS/main/module.xml
@@ -485,7 +485,7 @@ echo "</module>">> $MODULE_COMPRESS/main/module.xml
 # Generate library module for exec
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_EXEC/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/commons/exec">' >> $MODULE_EXEC/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.commons.exec">' >> $MODULE_EXEC/main/module.xml
 echo "  <resources>" >> $MODULE_EXEC/main/module.xml
 find $MODULE_EXEC/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_EXEC/main/module.xml
 echo "  </resources>">> $MODULE_EXEC/main/module.xml
@@ -496,7 +496,7 @@ echo "</module>">> $MODULE_EXEC/main/module.xml
 # Generate library module for net
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_NET/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/commons/net">' >> $MODULE_NET/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.commons.net">' >> $MODULE_NET/main/module.xml
 echo "  <resources>" >> $MODULE_NET/main/module.xml
 find $MODULE_NET/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_NET/main/module.xml
 echo "  </resources>">> $MODULE_NET/main/module.xml
@@ -507,7 +507,7 @@ echo "</module>">> $MODULE_NET/main/module.xml
 # Generate library module for vfs
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_VFS/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/apache/commons/vfs">' >> $MODULE_VFS/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.apache.commons.vfs">' >> $MODULE_VFS/main/module.xml
 echo "  <resources>" >> $MODULE_VFS/main/module.xml
 find $MODULE_VFS/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_VFS/main/module.xml
 echo "  </resources>">> $MODULE_VFS/main/module.xml
@@ -518,15 +518,12 @@ echo "</module>">> $MODULE_VFS/main/module.xml
 # Generate library module for solder
 #
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_SOLDER/main/module.xml
-echo '<module xmlns="urn:jboss:module:1.0" name="org/jboss/solder">' >> $MODULE_SOLDER/main/module.xml
+echo '<module xmlns="urn:jboss:module:1.0" name="org.jboss.solder">' >> $MODULE_SOLDER/main/module.xml
 echo "  <resources>" >> $MODULE_SOLDER/main/module.xml
 find $MODULE_SOLDER/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_SOLDER/main/module.xml
 echo "  </resources>">> $MODULE_SOLDER/main/module.xml
 echo "</module>">> $MODULE_SOLDER/main/module.xml
 
-
-echo -n "Prepared for copy? (Hit control-c if is not): "
-read ok
 
 # ------------------------------------------------------------------------------------------
 # Deploy on EAP
@@ -541,8 +538,6 @@ echo $DEPLOY_DIR"/system copied to "$DEPLOY_DIR
 
 cp layers.conf $DEPLOY_DIR
 
-echo -n "Are the modules copied? (Hit control-c if is not): "
-read ok
 
 #
 # Create new WAR with dependencies to created modules
