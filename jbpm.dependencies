@@ -1,20 +1,20 @@
     <module name="org.sonatype.aether" export="true" />
-    <module name="org/apache/ant" export="true" />
-    <module name="org/apache/camel" export="true" />
-    <module name="org/apache/commons/compress" export="true" />
-    <module name="org/apache/commons/exec" export="true" />
-    <module name="org/apache/commons/math" export="true" />
-    <module name="org/apache/commons/net" export="true" />
-    <module name="org/apache/commons/vfs" export="true" />
-    <module name="org/apache/helix" export="true" />
-    <module name="org/apache/lucene" export="true" />
+    <module name="org.apache.ant" export="true" />
+    <module name="org.apache.camel" export="true" />
+    <module name="org.apache.commons.compress" export="true" />
+    <module name="org.apache.commons.exec" export="true" />
+    <module name="org.apache.commons.math" export="true" />
+    <module name="org.apache.commons.net" export="true" />
+    <module name="org.apache.commons.vfs" export="true" />
+    <module name="org.apache.helix" export="true" />
+    <module name="org.apache.lucene" export="true" />
     <module name="org.apache.maven" export="true" />
-    <module name="org/mvel" export="true" />
-    <module name="org/sonatype/plexus" export="true" />
-    <module name="org/codehouse/plexus" export="true" />
+    <module name="org.mvel" export="true" />
+    <module name="org.sonatype.plexus" export="true" />
+    <module name="org.codehouse.plexus" export="true" />
     <module name="com.google.protobuf" export="true" />
-    <module name="org/sonatype/sisu" export="true" />
-    <module name="org/jboss/solder" export="true" />
-    <module name="org/sonatype/maven" export="true" />
-    <module name="org/apache/maven/wagon" export="true" />
-    <module name="org/apache/zookeeper" export="true" />
+    <module name="org.sonatype.sisu" export="true" />
+    <module name="org.jboss.solder" export="true" />
+    <module name="org.sonatype.maven" export="true" />
+    <module name="org.apache.maven.wagon" export="true" />
+    <module name="org.apache.zookeeper" export="true" />

@@ -11,7 +11,7 @@
 # ------------------------------------------------------------------------------------------
 EAP_DIR=/home/mbiarnes/Development/Software/jboss-eap-6.1
 DEPLOY_DIR=$EAP_DIR/modules
-BASE_DIR=/home/mbiarnes/Development/modules
+BASE_DIR=/home/mbiarnes/Development/git/gitTest/chestnut
 
 # Setup modules locations
 MODULE_LIB=$BASE_DIR/system/layers/bpms/org/kie/lib
