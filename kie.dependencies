@@ -1,0 +1,7 @@
+    <module name="org/apache/camel"  		export="true"/>
+    <module name="org/apache/commonsTlogging"  	export="true"/>
+    <module name="org/apache/commons/math"  	export="true"/>
+    <module name="org/apache/helix"  		export="true"/>
+    <module name="org/apache/lucene"  		export="true"/>
+    <module name="org/eclipse/jgit"  		export="true"/>
+    <module name="org/apache/zookeeper"  	export="true"/>
