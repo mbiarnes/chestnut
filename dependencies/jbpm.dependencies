@@ -16,7 +16,6 @@ org.codehouse.plexus
 org.drools
 org.hibernate
 org.javassist
-org.jboss.solder
 org.jboss.weld.api
 org.jboss.weld.core 
 org.jboss.weld.spi

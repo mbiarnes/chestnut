@@ -1,4 +1,5 @@
 javax.enterprise.api
 javax.api
 org.jboss.log4j.logmanager
-
+javax.servlet.api
+javax.servlet.jsp.api

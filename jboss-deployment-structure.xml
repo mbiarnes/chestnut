@@ -26,11 +26,10 @@
     <module name="org.jboss.logging" export="true"/>
     <module name="org.slf4j" export="true"/>
     <module name="org.jboss.weld.api" export="true"/>
-    <module name="org.jboss.solder" export="true"/>
-    <module name="org.kie" meta-inf="import"/>
-    <module name="org.jbpm" meta-inf="import"/>
-    <module name="org.drools" meta-inf="import"/>
-    <module name="org.kie.lib" meta-inf="import"/>
+    <module name="org.kie"  export="true" meta-inf="import"/>
+    <module name="org.jbpm" export="true" meta-inf="import"/>
+    <module name="org.drools" export="true" meta-inf="import"/>
+    <module name="org.kie.lib" export="true" meta-inf="import"/>
     <module name="javax.persistence.api" export="true"/>
     <module name="javax.servlet.api" export="true"/>
     <module name="javax.enterprise.api" meta-inf="import"/>

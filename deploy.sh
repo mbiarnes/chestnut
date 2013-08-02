@@ -13,11 +13,18 @@ createModuleXML() {
 	MODULE_NAME=$1
 	MODULE_PATH=$2
 	MODULE_DEPS_FILE=$3
+	MODULE_RESOURCE=$4
 
 	echo '<?xml version="1.0" encoding="UTF-8"?>' > $MODULE_PATH/main/module.xml
 	echo "<module xmlns=\"urn:jboss:module:1.0\" name=\"$MODULE_NAME\">" >> $MODULE_PATH/main/module.xml
 	echo "  <resources>" >> $MODULE_PATH/main/module.xml
-	find $MODULE_PATH/main/*.jar -type f -printf '    <resource-root path="%f"/>\n' >> $MODULE_PATH/main/module.xml
+# Add jar resources	
+find $MODULE_PATH/main/*.jar -type f -printf '    <resource-root path="%f"/>\n' >> $MODULE_PATH/main/module.xml
+
+# Add adittional resource.
+if [[ -n $MODULE_RESOURCE ]] ;then 
+	    echo "    <resource-root path=\"$MODULE_RESOURCE\"/>" >> $MODULE_PATH/main/module.xml
+fi
 	echo "  </resources>">> $MODULE_PATH/main/module.xml
 	echo "  <dependencies>">> $MODULE_PATH/main/module.xml
 	while read module; do
@@ -174,6 +181,9 @@ mv $MODULE_LIB/main/kie-*.jar              $MODULE_KIE/main
 mv $MODULE_LIB/main/kieora*.jar            $MODULE_KIE/main
 mv $MODULE_LIB/main/jbpm-*.jar             $MODULE_JBPM/main
 mv $MODULE_LIB/main/drools-*.jar           $MODULE_DROOLS/main
+# JBPM PATCH
+mkdir $MODULE_JBPM/main/META-INF
+cp $BASE_DIR/patches/modules/jbpm/META-INF/* $MODULE_JBPM/main/META-INF
 
 # new modules KIE dependencies
 
@@ -235,6 +245,8 @@ mv $MODULE_LIB/main/sisu-inject-plexus-2.2.3.jar      $MODULE_SISU/main
 mv $MODULE_LIB/main/solder-api-3.2.0.Final.jar        $MODULE_SOLDER/main
 mv $MODULE_LIB/main/solder-impl-3.2.0.Final.jar       $MODULE_SOLDER/main 
 mv $MODULE_LIB/main/solder-logging-3.2.0.Final.jar    $MODULE_SOLDER/main
+#mkdir $MODULE_SOLDER/main/META-INF
+#cp $BASE_DIR/patches/modules/solder/META-INF/* $MODULE_SOLDER/main/META-INF
 
 
 # ------------------------------------------------------------------------------------------
@@ -252,7 +264,7 @@ createModuleXML "org.drools" $MODULE_DROOLS $MODULE_DROOLS_DEPS
 # Generate library module for jbpm
 #
 MODULE_JBPM_DEPS=./dependencies/jbpm.dependencies
-createModuleXML "org.jbpm" $MODULE_JBPM $MODULE_JBPM_DEPS
+createModuleXML "org.jbpm" $MODULE_JBPM $MODULE_JBPM_DEPS "META-INF"
 
 #
 # Generate library module for kie
@@ -394,6 +406,7 @@ createModuleXML "org.sonatype.sisu" $MODULE_SISU $MODULE_SISU_DEPS
 # Generate library module for solder
 #
 MODULE_solder_DEPS=./dependencies/solder.dependencies
+#createModuleXML "org.jboss.solder" $MODULE_SOLDER $MODULE_solder_DEPS "META-INF"
 createModuleXML "org.jboss.solder" $MODULE_SOLDER $MODULE_solder_DEPS
 
 #
@@ -435,14 +448,18 @@ cp $BASE_DIR/jboss-deployment-structure.xml $BASE_DIR/kie-wb/WEB-INF
 # Workaround until solder problem is solved
 #
 mkdir $BASE_DIR/kie-wb/META-INF/services
-cp $BASE_DIR/cdi-extensions/solder/* $BASE_DIR/kie-wb/META-INF/services
+
+cp $BASE_DIR/patches/cdi-extensions/solder/* $BASE_DIR/kie-wb/META-INF/services
 # Workaround Lucene
-cp $BASE_DIR/cdi-extensions/lucene/* $BASE_DIR/kie-wb/META-INF/services
+cp $BASE_DIR/patches/cdi-extensions/lucene/* $BASE_DIR/kie-wb/META-INF/services
 
 # Uberfire fix
-cp -rf $BASE_DIR/uberfire_fixes/* $BASE_DIR/kie-wb/WEB-INF/classes
+cp -rf $BASE_DIR/patches/uberfire/* $BASE_DIR/kie-wb/WEB-INF/classes
 
+# Other META-INF fixes
+#cp -rf $BASE_DIR/patches/META-INF/* $BASE_DIR/kie-wb/META-INF
 
+# Generate the resulting WAR file.
 jar cf $BASE_DIR/kie-wb-modules.war *
 
 # 
