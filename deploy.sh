@@ -434,18 +434,10 @@ cp $BASE_DIR/jboss-deployment-structure.xml $BASE_DIR/kie-wb/WEB-INF
 #
 # Workaround until solder problem is solved
 #
-
 mkdir $BASE_DIR/kie-wb/META-INF/services
-
-cp $BASE_DIR/solder_cdi_extensions/javax.enterprise.inject.spi.Extension $BASE_DIR/kie-wb/META-INF/services
-cp $BASE_DIR/solder_cdi_extensions/org.jboss.solder.beanManager.BeanManagerProvider $BASE_DIR/kie-wb/META-INF/services
-cp $BASE_DIR/solder_cdi_extensions/org.jboss.solder.config.xml.bootstrap.XmlDocumentProvider $BASE_DIR/kie-wb/META-INF/services
-cp $BASE_DIR/solder_cdi_extensions/org.jboss.solder.resourceLoader.ResourceLoader $BASE_DIR/kie-wb/META-INF/services
-cp $BASE_DIR/solder_cdi_extensions/org.jboss.solder.servlet.resource.WebResourceLocationProvider $BASE_DIR/kie-wb/META-INF/services
-cp $BASE_DIR/solder_cdi_extensions/org.jboss.solder.servlet.webxml.WebXmlLocator $BASE_DIR/kie-wb/META-INF/services
-
+cp $BASE_DIR/cdi-extensions/solder/* $BASE_DIR/kie-wb/META-INF/services
 # Workaround Lucene
-cp $BASE_DIR/workaroundLucene/* $BASE_DIR/kie-wb/META-INF/services
+cp $BASE_DIR/cdi-extensions/lucene/* $BASE_DIR/kie-wb/META-INF/services
 
 # Uberfire fix
 cp -rf $BASE_DIR/uberfire_fixes/* $BASE_DIR/kie-wb/WEB-INF/classes

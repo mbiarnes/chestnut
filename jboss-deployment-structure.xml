@@ -44,6 +44,7 @@
     <module name="org.apache.commons.io" export="true"/>
     <module name="org.apache.commons.lang" export="true"/>
     <module name="org.apache.commons.beanutils" export="true"/>
+    <module name="org.apache.lucene" export="true" meta-inf="import"/>
     <module name="org.codehaus.jackson.jackson-core-asl" export="true"/>
     <module name="org.codehaus.jackson.jackson-jaxrs" export="true"/>
     <module name="org.codehaus.jackson.jackson-mapper-asl" export="true"/>
