@@ -1,5 +1,0 @@
-<dependencies>
- <module name="javax.enterprise.api" export="true"/>
- <module name="javax.api" export="true"/>
- <module name="org.jboss.log4j.logmanager" export="true"/>
-</dependencies>
