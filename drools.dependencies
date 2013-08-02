@@ -1,3 +1,8 @@
+<dependencies>
+    <module name="org.kie.lib" export="true"/>
+    <module name="org.kie" export="true"/>
+    <module name="org.hibernate" export="true"/>
+    <module name="org.javassist" export="true"/>
     <module name="org.sonatype.aether"  export="true"/>
     <module name="org.apache.ant"  	export="true"/>
     <module name="org.apache.maven"  	export="true"/>
@@ -9,3 +14,4 @@
     <module name="org.sonatype.sisu"  	export="true"/>
     <module name="org.apache.maven.wagon"  export="true"/>
     <module name="org.sonatype.maven"  	export="true"/>
+</dependencies>

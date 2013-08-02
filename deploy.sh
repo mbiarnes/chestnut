@@ -9,9 +9,9 @@
 # - Clean dependencies
 # - 
 # ------------------------------------------------------------------------------------------
-EAP_DIR=/home/mbiarnes/Development/Software/jboss-eap-6.1
+EAP_DIR=/home/pzapata/RH/EAP-6.1.0/jboss-eap-6.1
 DEPLOY_DIR=$EAP_DIR/modules
-BASE_DIR=/home/mbiarnes/Development/git/gitTest/chestnut
+BASE_DIR=/home/pzapata/RH/GIT/chestnut
 
 # Setup modules locations
 MODULE_LIB=$BASE_DIR/system/layers/bpms/org/kie/lib
@@ -218,9 +218,7 @@ echo '<module xmlns="urn:jboss:module:1.0" name="org.kie.lib">' >> $MODULE_LIB/m
 echo "  <resources>" >> $MODULE_LIB/main/module.xml
 find $MODULE_LIB/main/*.jar -type f -printf '    <resource-root path="%f"/>\n' >> $MODULE_LIB/main/module.xml
 echo "  </resources>">> $MODULE_LIB/main/module.xml
-echo "  <dependencies>">> $MODULE_LIB/main/module.xml
-cat  ./eap-deps.list >> $MODULE_LIB/main/module.xml
-echo "  </dependencies>">> $MODULE_LIB/main/module.xml
+cat  ./kie-lib.dependencies >> $MODULE_LIB/main/module.xml
 echo "</module>">> $MODULE_LIB/main/module.xml
 
 
@@ -232,13 +230,7 @@ echo '<module xmlns="urn:jboss:module:1.0" name="org.kie">' >> $MODULE_KIE/main/
 echo "  <resources>" >> $MODULE_KIE/main/module.xml
 find $MODULE_KIE/main/*.jar -type f -printf '    <resource-root path="%f"/>\n' >> $MODULE_KIE/main/module.xml
 echo "  </resources>">> $MODULE_KIE/main/module.xml
-echo "  <dependencies>">> $MODULE_KIE/main/module.xml
-echo '    <module name="org.kie.lib" export="true"/>'>> $MODULE_KIE/main/module.xml
-echo '    <module name="org.jbpm"    export="true"/>'>> $MODULE_KIE/main/module.xml
-echo '    <module name="org.drools"  export="true"/>'>> $MODULE_KIE/main/module.xml
 cat kie.dependencies  >> $MODULE_KIE/main/module.xml
-echo >> $MODULE_KIE/main/module.xml
-echo "  </dependencies>">> $MODULE_KIE/main/module.xml
 echo "</module>">> $MODULE_KIE/main/module.xml
 
 
@@ -250,14 +242,7 @@ echo '<module xmlns="urn:jboss:module:1.0" name="org.drools">' >> $MODULE_DROOLS
 echo "  <resources>" >> $MODULE_DROOLS/main/module.xml
 find $MODULE_DROOLS/main/*.jar -type f -printf '    <resource-root path="%f"/>\n' >> $MODULE_DROOLS/main/module.xml
 echo "  </resources>">> $MODULE_DROOLS/main/module.xml
-echo "  <dependencies>">> $MODULE_DROOLS/main/module.xml
-echo '    <module name="org.kie.lib" export="true"/>'>> $MODULE_DROOLS/main/module.xml
-echo '    <module name="org.kie" export="true"/>'>> $MODULE_DROOLS/main/module.xml
-echo '    <module name="org.hibernate" export="true"/>'>> $MODULE_DROOLS/main/module.xml
-echo '    <module name="org.javassist" export="true"/>'>> $MODULE_DROOLS/main/module.xml
 cat drools.dependencies  >> $MODULE_DROOLS/main/module.xml
-echo >> $MODULE_DROOLS/main/module.xml
-echo "  </dependencies>">> $MODULE_DROOLS/main/module.xml
 echo "</module>">> $MODULE_DROOLS/main/module.xml
 
 
@@ -269,18 +254,7 @@ echo '<module xmlns="urn:jboss:module:1.0" name="org.jbpm">' >> $MODULE_JBPM/mai
 echo "  <resources>" >> $MODULE_JBPM/main/module.xml
 find $MODULE_JBPM/main/*.jar -type f -printf '    <resource-root path="%f"/>\n' >> $MODULE_JBPM/main/module.xml
 echo "  </resources>">> $MODULE_JBPM/main/module.xml
-echo "  <dependencies>">> $MODULE_JBPM/main/module.xml
-echo '    <module name="org.kie.lib" export="true"/>'>> $MODULE_JBPM/main/module.xml
-echo '    <module name="org.drools" export="true"/>'>> $MODULE_JBPM/main/module.xml
-echo '    <module name="org.hibernate" export="true"/>'>> $MODULE_JBPM/main/module.xml
-echo '    <module name="org.javassist" export="true"/>'>> $MODULE_JBPM/main/module.xml
-echo '    <module name="org.jboss.weld.api" export="true"/>'>> $MODULE_JBPM/main/module.xml
-echo '    <module name="javax.persistence.api" export="true"/>'>> $MODULE_JBPM/main/module.xml
-echo '    <module name="org.jboss.weld.core" export="true" />' >> $MODULE_JBPM/main/module.xml 
-echo '    <module name="org.jboss.weld.spi" export="true" />' >> $MODULE_JBPM/main/module.xml
 cat jbpm.dependencies  >> $MODULE_JBPM/main/module.xml
-echo >> $MODULE_JBPM/main/module.xml
-echo "  </dependencies>">> $MODULE_JBPM/main/module.xml
 echo "</module>">> $MODULE_JBPM/main/module.xml
 
 
@@ -522,6 +496,7 @@ echo '<module xmlns="urn:jboss:module:1.0" name="org.jboss.solder">' >> $MODULE_
 echo "  <resources>" >> $MODULE_SOLDER/main/module.xml
 find $MODULE_SOLDER/main/*.jar -type f -printf '      <resource-root path="%f"/>\n' >> $MODULE_SOLDER/main/module.xml
 echo "  </resources>">> $MODULE_SOLDER/main/module.xml
+cat solder.dependencies  >> $MODULE_SOLDER/main/module.xml
 echo "</module>">> $MODULE_SOLDER/main/module.xml
 
 
