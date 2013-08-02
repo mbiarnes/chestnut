@@ -113,7 +113,7 @@ mkdir  -p $MODULE_SOLDER/main
 rm -rf kie-wb
 mkdir kie-wb
 cd kie-wb
-jar xvf ../kie-wb.war
+jar xf ../kie-wb.war
 cd ..
 
 
@@ -413,7 +413,7 @@ createModuleXML "org.apache.zookeeper" $MODULE_ZOOKEEPER $MODULE_ZOOKEEPER_DEPS
 # ------------------------------------------------------------------------------------------
 # Deploy on EAP
 # ------------------------------------------------------------------------------------------
-echo 'Deploying layer on EAP 6.1 at $DEPLOY_DIR....'
+echo "Deploying layer on EAP 6.1 at $DEPLOY_DIR...."
 
 rm -rf $DEPLOY_DIR/system/layers/bpms
 echo $DEPLOY_DIR"/system/layers/bpms removed"
@@ -447,7 +447,11 @@ cp $BASE_DIR/solder_cdi_extensions/org.jboss.solder.servlet.webxml.WebXmlLocator
 # Workaround Lucene
 cp $BASE_DIR/workaroundLucene/* $BASE_DIR/kie-wb/META-INF/services
 
-jar cvf $BASE_DIR/kie-wb-modules.war *
+# Uberfire fix
+cp -rf $BASE_DIR/uberfire_fixes/* $BASE_DIR/kie-wb/WEB-INF/classes
+
+
+jar cf $BASE_DIR/kie-wb-modules.war *
 
 # 
 # Deploy WAR on EAP 6.1
