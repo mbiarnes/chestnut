@@ -19,62 +19,58 @@
   -->
 <jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
 <deployment>
-	 <dependencies>
-             <module name="javax.servlet.api" />
- <module name="org.hibernate" export="true"/>
-             
-<module name="javax.enterprise.api" />
-             <module name="org.jboss.logging" />
-             <module name="org.slf4j" />
-             <module name="org.jboss.weld.api" />
-             <module name="org.jboss.solder" />
-             <module name="org.kie"      meta-inf="import"/>
-             <module name="org.jbpm"     meta-inf="import"/>
-             <module name="org.drools"   meta-inf="import"/>
-             <module name="org.kie.lib"  meta-inf="import"/>
-     <module name="javax.persistence.api"                   export="true"/>
-     <module name="javax.servlet.api"              export="true"/>
-     <module name="javax.enterprise.api"           meta-inf="import"/>
-     <module name="org.jboss.logging"              export="true"/>
-     <module name="org.slf4j"                      export="true"/>
-     <module name="org.jboss.weld.api"             export="true"/>
-     <module name="org.apache.commons.logging"     export="true"/>
-     <module name="org.apache.commons.cli"         export="true"/>
-     <module name="org.apache.commons.codec"       export="true"/>
-     <module name="org.apache.commons.collections" export="true"/>
-     <module name="org.apache.commons.io"          export="true"/>
-     <module name="org.apache.commons.lang"        export="true"/>
-     <module name="org.apache.commons.beanutils"   export="true"/>
-     <module name="org.codehaus.jackson.jackson-core-asl"   export="true"/>
-     <module name="org.codehaus.jackson.jackson-jaxrs"      export="true"/>
-     <module name="org.codehaus.jackson.jackson-mapper-asl" export="true"/>
-     <module name="org.codehaus.jackson.jackson-xc"         export="true"/>
-     <module name="javax.ws.rs.api"                         export="true"/>
-     <module name="javax.jms.api"                           export="true"/>
-     <module name="javax.xml.bind.api"                      export="true"/>
-     <module name="org.jgroups"                             export="true"/>
-     <module name="org.joda.time"                           export="true"/>
-     <module name="javax.api"                               export="true"/>
-     <module name="javax.ejb.api"                           export="true"/>
-     <module name="javax.servlet.api"                       export="true"/>
-     <module name="javax.servlet.jsp.api"                   export="true"/>
-     <module name="org.jdom"                                export="true"/>
-     <module name="com.google.guava"                        export="true"/>
-     <module name="javax.validation.api"                    export="true"/>
-     <module name="org.apache.xml-resolver"                 export="true"/>
-     <module name="org.apache.ws.xmlschema"                 export="true"/>
-     <module name="org.jboss.log4j.logmanager"              export="true"/>
-     <module name="javax.xml.stream.api"                    export="true"/>
-     <module name="org.apache.commons.configuration"        export="true"/>
-     <module name="javax.persistence.api"                   export="true"/>
-
-<module name="org.apache.xerces" export="true" />
-<module name="org.jboss.weld.api" export="true" />
-<module name="org.jboss.weld.core" export="true" />
-<module name="org.jboss.weld.spi" export="true" />
-
-
-	 </dependencies>
- </deployment>
+  <dependencies>  
+    <module name="javax.servlet.api" export="true"/>
+    <module name="org.hibernate" export="true"/>
+    <module name="javax.enterprise.api" export="true"/>
+    <module name="org.jboss.logging" export="true"/>
+    <module name="org.slf4j" export="true"/>
+    <module name="org.jboss.weld.api" export="true"/>
+    <module name="org.jboss.solder" export="true"/>
+    <module name="org.kie" meta-inf="import"/>
+    <module name="org.jbpm" meta-inf="import"/>
+    <module name="org.drools" meta-inf="import"/>
+    <module name="org.kie.lib" meta-inf="import"/>
+    <module name="javax.persistence.api" export="true"/>
+    <module name="javax.servlet.api" export="true"/>
+    <module name="javax.enterprise.api" meta-inf="import"/>
+    <module name="org.jboss.logging" export="true"/>
+    <module name="org.slf4j" export="true"/>
+    <module name="org.jboss.weld.api" export="true"/>
+    <module name="org.apache.commons.logging" export="true"/>
+    <module name="org.apache.commons.cli" export="true"/>
+    <module name="org.apache.commons.codec" export="true"/>
+    <module name="org.apache.commons.collections" export="true"/>
+    <module name="org.apache.commons.io" export="true"/>
+    <module name="org.apache.commons.lang" export="true"/>
+    <module name="org.apache.commons.beanutils" export="true"/>
+    <module name="org.codehaus.jackson.jackson-core-asl" export="true"/>
+    <module name="org.codehaus.jackson.jackson-jaxrs" export="true"/>
+    <module name="org.codehaus.jackson.jackson-mapper-asl" export="true"/>
+    <module name="org.codehaus.jackson.jackson-xc" export="true"/>
+    <module name="javax.ws.rs.api" export="true"/>
+    <module name="javax.jms.api" export="true"/>
+    <module name="javax.xml.bind.api" export="true"/>
+    <module name="org.jgroups" export="true"/>
+    <module name="org.joda.time" export="true"/>
+    <module name="javax.api" export="true"/>
+    <module name="javax.ejb.api" export="true"/>
+    <module name="javax.servlet.api" export="true"/>
+    <module name="javax.servlet.jsp.api" export="true"/>
+    <module name="org.jdom" export="true"/>
+    <module name="com.google.guava" export="true"/>
+    <module name="javax.validation.api" export="true"/>
+    <module name="org.apache.xml-resolver" export="true"/>
+    <module name="org.apache.ws.xmlschema" export="true"/>
+    <module name="org.jboss.log4j.logmanager" export="true"/>
+    <module name="javax.xml.stream.api" export="true"/>
+    <module name="org.apache.commons.configuration" export="true"/>
+    <module name="javax.persistence.api" export="true"/>
+    <module name="org.apache.xerces" export="true" />
+    <module name="org.jboss.weld.api" export="true" />
+    <module name="org.jboss.weld.core" export="true" />
+    <module name="org.jboss.weld.spi" export="true" />
+  </dependencies>
+</deployment>
 </jboss-deployment-structure>
 
