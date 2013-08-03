@@ -36,6 +36,7 @@
     <module name="org.jboss.logging" export="true"/>
     <module name="org.slf4j" export="true"/>
     <module name="org.jboss.weld.api" export="true"/>
+    <module name="org.jboss.solder" export="true" meta-inf="import"/>
     <module name="org.apache.commons.logging" export="true"/>
     <module name="org.apache.commons.cli" export="true"/>
     <module name="org.apache.commons.codec" export="true"/>
