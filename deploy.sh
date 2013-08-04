@@ -453,6 +453,9 @@ cp $BASE_DIR/patches/cdi-extensions/solder/* $BASE_DIR/kie-wb/META-INF/services
 # Workaround Lucene
 cp $BASE_DIR/patches/cdi-extensions/lucene/* $BASE_DIR/kie-wb/META-INF/services
 
+# Workaround Solder filter
+#cp $BASE_DIR/patches/web.xml $BASE_DIR/kie-wb/WEB-INF
+
 # Uberfire fix
 cp -rf $BASE_DIR/patches/uberfire/* $BASE_DIR/kie-wb/WEB-INF/classes
 
