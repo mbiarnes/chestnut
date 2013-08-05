@@ -449,9 +449,9 @@ cp $BASE_DIR/jboss-deployment-structure.xml $BASE_DIR/kie-wb/WEB-INF
 #
 mkdir $BASE_DIR/kie-wb/META-INF/services
 
-cp $BASE_DIR/patches/cdi-extensions/solder/* $BASE_DIR/kie-wb/META-INF/services
+#cp $BASE_DIR/patches/cdi-extensions/solder/* $BASE_DIR/kie-wb/META-INF/services
 # Workaround Lucene
-cp $BASE_DIR/patches/cdi-extensions/lucene/* $BASE_DIR/kie-wb/META-INF/services
+#cp $BASE_DIR/patches/cdi-extensions/lucene/* $BASE_DIR/kie-wb/META-INF/services
 
 # Workaround Solder filter
 #cp $BASE_DIR/patches/web.xml $BASE_DIR/kie-wb/WEB-INF

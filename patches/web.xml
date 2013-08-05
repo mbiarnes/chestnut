@@ -36,7 +36,7 @@
     </filter-mapping-->
 
 <!-- HACK DUE TO EAP 6.1 BUG -->
-<filter>
+<!--filter>
     <filter-name>Seam 3.1 Servlet Filter</filter-name>
     <filter-class>org.jboss.solder.servlet.event.ServletEventBridgeFilter</filter-class>
 </filter>
@@ -44,7 +44,7 @@
 <filter-mapping>
     <filter-name>Seam 3.1 Servlet Filter</filter-name>
     <url-pattern>/*</url-pattern>
-</filter-mapping>
+</filter-mapping-->
 <!-- END OF HACK -->
     <!-- RESTEasy configurations -->
     <!-- enable the Asynchronous Job Service -->
