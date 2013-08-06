@@ -261,7 +261,7 @@ mv $MODULE_LIB/main/solder-impl-3.2.0.Final.jar       $MODULE_SOLDER/main
 mv $MODULE_LIB/main/solder-logging-3.2.0.Final.jar    $MODULE_SOLDER/main
 #mkdir $MODULE_SOLDER/main/META-INF
 #cp $BASE_DIR/patches/modules/solder/META-INF/* $MODULE_SOLDER/main/META-INF
-
+cp -rf $BASE_DIR/patches/modules/solder/*.jar $MODULE_SOLDER/main
 
 # ------------------------------------------------------------------------------------------
 # Generate modules.xml
