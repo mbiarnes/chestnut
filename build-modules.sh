@@ -257,10 +257,9 @@ mv $MODULE_LIB/main/commons-net-2.0.jar               $MODULE_NET/main
 mv $MODULE_LIB/main/commons-vfs-1.0.jar               $MODULE_VFS/main
 mv $MODULE_LIB/main/sisu-inject-plexus-2.2.3.jar      $MODULE_SISU/main
 mv $MODULE_LIB/main/solder-api-3.2.0.Final.jar        $MODULE_SOLDER/main
-mv $MODULE_LIB/main/solder-impl-3.2.0.Final.jar       $MODULE_SOLDER/main 
+#mv $MODULE_LIB/main/solder-impl-3.2.0.Final.jar       $MODULE_SOLDER/main 
 mv $MODULE_LIB/main/solder-logging-3.2.0.Final.jar    $MODULE_SOLDER/main
-#mkdir $MODULE_SOLDER/main/META-INF
-#cp $BASE_DIR/patches/modules/solder/META-INF/* $MODULE_SOLDER/main/META-INF
+# Apply solder fix.
 cp -rf $BASE_DIR/patches/modules/solder/*.jar $MODULE_SOLDER/main
 
 # ------------------------------------------------------------------------------------------
@@ -420,7 +419,6 @@ createModuleXML "org.sonatype.sisu" $MODULE_SISU $MODULE_SISU_DEPS
 # Generate library module for solder
 #
 MODULE_solder_DEPS=./dependencies/solder.dependencies
-#createModuleXML "org.jboss.solder" $MODULE_SOLDER $MODULE_solder_DEPS "META-INF"
 createModuleXML "org.jboss.solder" $MODULE_SOLDER $MODULE_solder_DEPS
 
 #
@@ -456,10 +454,7 @@ cp $BASE_DIR/patches/cdi-extensions/solder/* $TMP_DIR/kie-wb/META-INF/services
 cp $BASE_DIR/patches/cdi-extensions/lucene/* $TMP_DIR/kie-wb/META-INF/services
 
 # Workaround Solder filter
-#cp $BASE_DIR/patches/web.xml $TMP_DIR/kie-wb/WEB-INF
-
-# Uberfire fix
-cp -rf $BASE_DIR/patches/uberfire/* $TMP_DIR/kie-wb/WEB-INF/classes
+cp $BASE_DIR/patches/web.xml $TMP_DIR/kie-wb/WEB-INF
 
 # Other META-INF fixes
 #cp -rf $BASE_DIR/patches/META-INF/* $TMP_DIR/kie-wb/META-INF
