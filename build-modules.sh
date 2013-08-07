@@ -257,7 +257,7 @@ mv $MODULE_LIB/main/commons-net-2.0.jar               $MODULE_NET/main
 mv $MODULE_LIB/main/commons-vfs-1.0.jar               $MODULE_VFS/main
 mv $MODULE_LIB/main/sisu-inject-plexus-2.2.3.jar      $MODULE_SISU/main
 mv $MODULE_LIB/main/solder-api-3.2.0.Final.jar        $MODULE_SOLDER/main
-#mv $MODULE_LIB/main/solder-impl-3.2.0.Final.jar       $MODULE_SOLDER/main 
+mv $MODULE_LIB/main/solder-impl-3.2.0.Final.jar       $MODULE_SOLDER/main 
 mv $MODULE_LIB/main/solder-logging-3.2.0.Final.jar    $MODULE_SOLDER/main
 # Apply solder fix.
 cp -rf $BASE_DIR/patches/modules/solder/*.jar $MODULE_SOLDER/main
