@@ -24,7 +24,7 @@
     <module name="org.kie"  export="true" meta-inf="import"/>
     <module name="org.jbpm" export="true" meta-inf="import"/>
     <module name="org.drools" export="true" meta-inf="import"/>
-
+    <module name="com.google.protobuf" export="true"/>
     <module name="javax.servlet.api" export="true"/>
     <module name="com.google.guava" export="true"/>
     <module name="javax.api" export="true"/>
