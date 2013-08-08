@@ -75,4 +75,5 @@ javax.ws.rs.api
 javax.wsdl4j.api
 javax.xml.bind.api
 javax.xml.stream.api
+javax.annotation.api
 
