@@ -19,7 +19,7 @@
   -->
 <jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
 <deployment>
-  <dependencies>  
+  <dependencies>
     <module name="org.kie.lib" export="true" meta-inf="import"/>
     <module name="org.kie"  export="true" meta-inf="import"/>
     <module name="org.jbpm" export="true" meta-inf="import"/>
@@ -65,6 +65,11 @@
     <module name="org.jgroups" export="true"/>
     <module name="org.joda.time" export="true"/>
     <module name="org.slf4j" export="true"/>
+    <module name="org.hornetq.ra" export="true"/>
+    <module name="org.hornetq" export="true"/>
+    <module name="javax.transaction.api" export="true"/>
+    <module name="org.jboss.as.transactions" export="true"/>
+    <module name="org.jboss.jboss-transaction-spi" export="true"/>
   </dependencies>
 </deployment>
 </jboss-deployment-structure>

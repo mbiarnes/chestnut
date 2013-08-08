@@ -28,8 +28,10 @@ org.codehaus.jackson.jackson-mapper-asl
 org.codehaus.jackson.jackson-xc
 org.dom4j
 org.javassist
+org.jboss.as.transactions
 org.jboss.as.web
 org.jboss.ejb-client
+org.jboss.jboss-transaction-spi
 org.jboss.logging
 org.jboss.logmanager
 org.jboss.log4j.logmanager
@@ -55,6 +57,7 @@ org.hibernate.commons-annotations
 org.hibernate
 org.hibernate.validator
 org.hornetq
+org.hornetq.ra
 org.osgi.core
 org.slf4j
 org.slf4j.jcl-over-slf4j    
