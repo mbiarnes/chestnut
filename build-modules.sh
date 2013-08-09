@@ -47,7 +47,6 @@ fixCDIExtensions() {
 				if [ "$file" == "$SPI_EXTENSION_FILENAME" ]; then
 					cat $CDI_EXTENSION_PATH/${dir##*/}/$file >> $TARGET_SERVICES_PATH/$SPI_EXTENSION_FILENAME
 				else
-echo "cp $CDI_EXTENSION_PATH/$file $TARGET_SERVICES_PATH"
 					cp $CDI_EXTENSION_PATH/${dir##*/}/$file $TARGET_SERVICES_PATH
 				fi
 			done
