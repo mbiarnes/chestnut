@@ -4,7 +4,7 @@ Table of content
 ----------------
 
 * **[Introduction](#introduction)**
-* **[pre-release actions](#pre_release)**
+* **[pre-release actions](#pre-release)**
     * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-](#012)**
     * **[022.Releasing_Dashbuilder_remove-release-branches](#022)**
     * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#034)**
@@ -42,21 +42,33 @@ Table of content
 
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 Introduction
 ============
-wenn wir fahren fahren fahren mit der Bahn Bahn Bhan
+Historically the releases for droolsjbpm (kie) were done manually following this document [README](https://github.com/droolsjbpm/droolsjbpm-build-bootstrap/blob/master/RELEASE-README.md).<br>
+Nowerdays kie team use the [Jenkins CI](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/) with all its views and scripts to release.<br>
+When kie-team has to do a release it has two main reasons:
+
+* a realease + tag for community (i.e. 6.4.0.Final) based on an community branch or a community tag + some cherry-picks
+* a tag for productization (i.e. sync-6.4.x-2016.04.21) based on a community branch, a community tag or previous product tag + some cherry-picks
+
+All this possibilities are covered with the different scripts.
+
+The main views for releasng in Jenkins CI are:
+
+* **[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata/)**
+* **[uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x)**
+* **[uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x)**
+* **[dashbuidoler-releases](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases/)**
+* **[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/)**
+* **[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/)**
+
+In future time there will be created new views and old views, that no longer are supported will dissapear.<br>
+Right now (April 2016) the master branch of droolsjbpm is 7.0.0-SNAPSHOT. There will be created a new 7.0.x branch soon and so created a new view and new scripts on Jenkins, also 
+it will be removed some day the 6.2.x view.
+
+Pre-release
+===========
+
 
 
 
