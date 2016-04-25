@@ -5,15 +5,14 @@ Table of content
 
 * **[Introduction](#introduction)**
 * **[pre-release actions](#pre-release)**
-    * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-](#Releasing&nbsp;Uberfire&nbsp;and&nbsp;uberfire-extensions)**
+    * **[Zanata pulls](#Zanata-pulls)**
+        * **[pull-Zanata-translation-changes-\<branch\>](#zanata-pull)**
+        * **[push-Zanata-translation-changes-\<branch\>](#zanata-push)**
+    * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-\<branch\>](#1.Releasing_Uberfire_and_uberfire-extensions)**
     * **[022.Releasing_Dashbuilder_remove-release-branches](#022)**
     * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#034)**
     * **[update JIRA to th next release](#JIRA)**
     * **[mail to the bsig team about the upcoming release](#mail_to_bsig)**
-    
-* **[Zanata pulls](#zanata_pulls)**
-    * **[pull-Zanata-translation-changes-\<branch\>](#zanata-pull)**
-    * **[push-Zanata-translation-changes-\<branch\>](#zanata-push)**
     
 * **[Uberfire, Uberfire-extensions, dasbhuilder "internal" releases](#uf_dash_releases)**
     * **[010.Releasing_Uberfire_Uberfire-extensions_deploy-\<branch\>](#010)**
@@ -66,9 +65,14 @@ In future time there will be created new views and old views, that no longer are
 Right now (April 2016) the master branch of droolsjbpm is 7.0.0-SNAPSHOT. There will be created a new 7.0.x branch soon and so created a new view and new scripts on Jenkins, also 
 it will be removed some day the 6.2.x view.
 
+
 Pre-release
 ===========
-* **Releasing Uberfire and uberfire-extensions
+Before releasing kie we have first to pull latest Zanata translation changes from Zanata server and remove temporary branches used for previous releases for Uberfire, Uberfire-extensions, dashbuilder and
+and kie.
+<h3>Zanata-pulls</h3>
+das kann ja wohl nicht wah sein
+
 
 
 
