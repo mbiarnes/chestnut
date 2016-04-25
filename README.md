@@ -6,7 +6,7 @@ Table of content
 * **[Introduction](#introduction)**
 * **[pre-release actions](#pre-release)**
     * **[Zanata pulls](#Zanata-pulls)**
-        * **[pull-Zanata-translation-changes-\<branch\>](#zanata-pull)**
+        * **[pull-Zanata-translation-changes-\<branch\>](#zanata-pulls)**
         * **[push-Zanata-translation-changes-\<branch\>](#zanata-push)**
     * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-\<branch\>](#1.Releasing_Uberfire_and_uberfire-extensions)**
     * **[022.Releasing_Dashbuilder_remove-release-branches](#022)**
