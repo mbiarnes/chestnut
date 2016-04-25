@@ -5,9 +5,9 @@ Table of content
 
 * **[Introduction](#introduction)**
 * **[pre-release actions](#pre-release)**
-    * **[Zanata pulls](#Zanata-pulls)**
+    * **[Zanata pulls](#zanata-pulls)**
         * **[pull-Zanata-translation-changes-\<branch\>](#zanata-pulls)**
-        * **[push-Zanata-translation-changes-\<branch\>](#zanata-push)**
+        * **[push-Zanata-translation-changes-\<branch\>](#zanata-pulls)**
     * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-\<branch\>](#1.Releasing_Uberfire_and_uberfire-extensions)**
     * **[022.Releasing_Dashbuilder_remove-release-branches](#022)**
     * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#034)**
@@ -70,9 +70,44 @@ Pre-release
 ===========
 Before releasing kie we have first to pull latest Zanata translation changes from Zanata server and remove temporary branches used for previous releases for Uberfire, Uberfire-extensions, dashbuilder and
 and kie.
-<h3>Zanata-pulls</h3>
-das kann ja wohl nicht wah sein
+Zanata-pulls
+------------
+There are two main scripts for pushing or pulling Zanata modules. *pull-Zanata-translation-changes-\<branch\>* and *push-Zanata-translation-changes-\<branch\>* available on the view 
+[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata/).<br>
+**push-Zanata-translation-changes-\<branch\>** pushes the new words in i18n files for beeing translated from droolsjbpm to Znata-server.<br>
+This script is triggered and executes every day (once a day).<br>
+**pull-Zanata-translation-changes-\<branch\>** is executed before a release (+/-two days). This script is not triggered automatically.<br>
+What this script does is basically:
+
+    mvn -B zanata:pull-module (pulls all Zanata trabslations from Zanata server)
+    mvn replacer:replace -N (replaces basically apostrophe "'" by double apostrophe "''" - needed in french translations)
+    mvn native2ascii=native2ascii (only in repositories where this is needed)
+    git adds and commits (if there are changes)
+    raises a PR (pull request) to the repositories on github
+    
+The main repositories affected by Zanata changes are:
+
+    uberfire
+    uberire-extensions
+    dashbuilder
+    kie-uberfire-extensions
+    guvnor
+    kie-wb-common
+    jbpm_form_modeler
+    drools-wb
+    jbpm-designer
+    cd jbpm-designer-api
+    jbpm-console-ng
+    dashboard-builder
+    optaplanner-wb
+    jbpm-dashboard
+    kie-wb-distributions
+    
+Remove-old-branches
+===================
+Before pushing new "release" branches to github/jboss-integration is is important to rewove old and stale bracnhes from previous releases.
 
 
+ 
 
 
