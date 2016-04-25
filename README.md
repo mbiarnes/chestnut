@@ -5,7 +5,7 @@ Table of content
 
 * **[Introduction](#introduction)**
 * **[pre-release actions](#pre-release)**
-    * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-](#012)**
+    * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-](#Releasing&nbsp;Uberfire&nbsp;and&nbsp;uberfire-extensions)**
     * **[022.Releasing_Dashbuilder_remove-release-branches](#022)**
     * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#034)**
     * **[update JIRA to th next release](#JIRA)**
@@ -68,7 +68,7 @@ it will be removed some day the 6.2.x view.
 
 Pre-release
 ===========
-
+* **Releasing Uberfire and uberfire-extensions
 
 
 
