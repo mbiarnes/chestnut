@@ -119,79 +119,153 @@ All scripts have this parameters when building (Build with parameters):
 
 Close release on JIRA
 ---------------------
+1
+2
+3
 
 Mail to bsig
 ------------
-   
+1
+2
+3
+
 Releasing third party repos
 ===========================
+1
+2
+3
 
 Releasing Uberfire/Uberfire-extensions
 --------------------------------------
+1
+2
+3
 
 Releasing Dashbuilder
 ---------------------
+1
+2
+3
 
 KIE releases
 ============
+1
+2
+3
 
 Push KIE release branch
 -----------------------
+1
+2
+3
 
 Deploy locally kie
 ------------------
+1
+2
+3
 
 Cherry-picking
 --------------
+1
+2
+3
 
 Copy deployed KIE to Nexus
 --------------------------
+1
+2
+3
 
 Additional test coverage
 ------------------------
+1
+2
+3
 
 jbpm-test-coverage
 ------------------
+1
+2
+3
 
 backwards-compatible-check
 --------------------------
+1
+2
+3
 
 KIE server martix
 -----------------
+1
+2
+3
 
 KIE workbench smoke tests matrix
 --------------------------------
+1
+2
+3
 
 Post release actions
 ====================
+1
+2
+3
 
 Push tags
 ---------
+1
+2
+3
 
 Push Uberfire tag
 -----------------
+1
+2
+3
 
 Push Dashbuilder tag
 --------------------
+1
+2
+3
 
 Push KIE tag
 ------------
+1
+2
+3
 
 Release repositories on Nexus
 -----------------------------
+1
+2
+3
 
 Update to next development version
 ---------------------------------
+1
+2
+3
 
 Update Uberfire
 --------------
+1
+2
+3
 
 Update Dashbuilder
 -----------------
+1
+2
+3
 
 Update KIE
 ----------
-  
+1
+2
+3
   
 
 
