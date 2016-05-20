@@ -6,38 +6,38 @@ Table of content
 * **[Introduction](#introduction)**
 * **[Pre release actions](#pre-release-actions)**
     * **[Zanata pulls](#zanata-pulls)**
-        * **[pull-Zanata-translation-changes-\<branch\>](#zanata-pulls)**
-        * **[push-Zanata-translation-changes-\<branch\>](#zanata-pulls)**
-    * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-\<branch\>](#remove-old-branches)**
-    * **[022.Releasing_Dashbuilder_remove-release-branches](#remove-old-branches)**
-    * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#remove-old-branches)**
-    * **[update JIRA to the next release](#close-release-on-jira)**
-    * **[mail to the bsig team about the upcoming release](#mail-to-bsig)**
+        * **[Pull Zanata translation changes](#zanata-pulls)**
+        * **[Push Zanata translation changes](#zanata-pulls)**
+    * **[Remove old Uberfire & Ubefire-extensions release branches](#remove-old-branches)**
+    * **[Remove old Dashbuilder release branches](#remove-old-branches)**
+    * **[Remove old KIE release branches](#remove-old-branches)**
+    * **[Close release on JIRA](#close-release-on-jira)**
+    * **[Mail to the bsig team](#mail-to-bsig-team)**
     
-* **[Uberfire, Uberfire-extensions, dasbhuilder "internal" releases](#releasing-third-party-repositories)**
-    * **[010.Releasing_Uberfire_Uberfire-extensions_deploy-\<branch\>](#releasing-uberfire-uberfire-extensions)**
-    * **[020.Releasing_Dashbuilder_deploy](#releasing-dashbuilder)**
+* **[Releasing third party repositories](#releasing-third-party-repositories)**
+    * **[Releasing_Uberfire & Uberfire-extensions](#releasing-uberfire-uberfire-extensions)**
+    * **[Releasing_Dashbuilder](#releasing-dashbuilder)**
                     
 * **[KIE releases](#kie-releases)**
-    * **[030.Releasing_KIE_push-branches-\<branch\>](#push-kie-release-branch)**
-    * **[031.Releasing_KIE_deploy_locally-\<branch\>](#deploy-locally-kie)**
-    * **[cherry-picks](#cherry-picking)**
-    * **[032.Releasing_KIE_copy_deployed_directory_to_Nexus-\<branch\>](#copy-deployed-kie-to-nexus)**
-        * *[032a.Releasing_KIE_kie_all_jbpm_test_coverage-\<branch\>](#jbpm-test-coverage)*
-        * *[032b.Releasing_KIE_kie-all-kie-api-backwards-compat-check-\<branch\>](#backwards-compatible-check)*
-        * *[032c.Releasing_KIE_kie-all-kie-server-matrix-\<branch\>](#kie-server-martix)*
-        * *[032d.Releasing_KIE_kie-all-kie-wb-smoke-tests-matrix-\<branch\>](#kie-workbench-smoke-tests-matrix)*
+    * **[Push KIE release branches](#push-kie-release-branch)**
+    * **[Deploy locally KIE release artifacts](#deploy-locally-kie)**
+    * **[Cherry-picking](#cherry-picking)**
+    * **[Copy deployed KIE binaries to Nexus-\<branch\>](#copy-deployed-kie-to-nexus)**
+        * *[jbpm_test_coverage-\<branch\>](#jbpm-test-coverage)*
+        * *[kie-api-backwards-compat-check-\<branch\>](#kie-api-backwards-compatible-check)*
+        * *[kie-server-matrix-\<branch\>](#kie-server-martix)*
+        * *[kie-wb-smoke-tests-matrix-\<branch\>](#kie-workbench-smoke-tests-matrix)*
         
-* **[post-release actions](#post-release-action)**
+* **[post-release actions](#post-release-actions)**
     * **[Push tags to droolsjbpm/jboss-integration](#push-tags)**
-        * *[011.Releasing_Uberfire_Uberfire-extensions_push-tag-\<branch\>](#push-uberfire-tag)*
-        * *[021.Releasing_Dashbuilder_push-tag](#push-dashbuilder-tag)*
-        * *[033.Releasing_KIE_push-tags-\<branch\>](#push-kie-tag)*
-    * **[Release repositories](#release-repositories-on-nexus)**
+        * *[Push Uberfire & Uberfire-extensions tag](#push-uberfire-tag)*
+        * *[Push Dashbuilder tag](#push-dashbuilder-tag)*
+        * *[Push KIE tags](#push-kie-tags)*
+    * **[Release repositories on Nexus](#release-repositories-on-nexus)**
     * **[Updating to next development version](#update-to-next-development-version)**
-        * *[013.Releasing_Uberfire_Uberfire-extensions_update-next-development-version-\<branch\>](#update-uberfire)*
-        * *[023.Releasing_Dashbuilder_update-next-development-version](#update-dashbuilder)*
-        * *[035.Releasing_KIE_update-next-develop-version-\<branch\>](#update-kie)*
+        * *[Update Uberfire & Uberfire-extensions](#update-uberfire)*
+        * *[Update Dashbuilder](#update-dashbuilder)*
+        * *[Update KIE ](#update-kie)*
 
         
         
@@ -123,8 +123,8 @@ Close release on JIRA
 2<br>
 3<br>
 
-Mail to bsig
-------------
+Mail to bsig team
+-----------------
 1<br>
 2<br>
 3<br>
@@ -153,8 +153,8 @@ KIE releases
 2<br>
 3<br>
 
-Push KIE release branch
------------------------
+Push KIE release branches
+-------------------------
 1<br>
 2<br>
 3<br>
@@ -171,8 +171,8 @@ Cherry-picking
 2<br>
 3<br>
 
-Copy deployed KIE to Nexus
---------------------------
+Copy deployed KIE binaries to Nexus
+-----------------------------------
 1<br>
 2<br>
 3<br>
@@ -189,8 +189,8 @@ jbpm-test-coverage
 2<br>
 3<br>
 
-backwards-compatible-check
---------------------------
+kie api backwards compatible check
+----------------------------------
 1<br>
 2<br>
 3<br>
@@ -231,8 +231,8 @@ Push Dashbuilder tag
 2<br>
 3<br>
 
-Push KIE tag
-------------
+Push KIE tags
+-------------
 1<br>
 2<br>
 3<br>
