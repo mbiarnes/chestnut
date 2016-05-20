@@ -12,10 +12,10 @@ Table of content
     * **[022.Releasing_Dashbuilder_remove-release-branches](#remove-old-branches)**
     * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#remove-old-branches)**
     * **[update JIRA to the next release](#close-release-on-jira)**
-    * **[mail to the bsig team about the upcoming release](#mail_to_bsig)**
+    * **[mail to the bsig team about the upcoming release](#mail-to-bsig)**
     
-* **[Uberfire, Uberfire-extensions, dasbhuilder "internal" releases](#releasing-third-party-reps)**
-    * **[010.Releasing_Uberfire_Uberfire-extensions_deploy-\<branch\>](#releasing-uberfire/uberfire-extensions)**
+* **[Uberfire, Uberfire-extensions, dasbhuilder "internal" releases](#releasing-third-party-repositories)**
+    * **[010.Releasing_Uberfire_Uberfire-extensions_deploy-\<branch\>](#releasing-uberfire-uberfire-extensions)**
     * **[020.Releasing_Dashbuilder_deploy](#releasing-dashbuilder)**
                     
 * **[KIE releases](#kie-releases)**
@@ -119,153 +119,153 @@ All scripts have this parameters when building (Build with parameters):
 
 Close release on JIRA
 ---------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Mail to bsig
 ------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
-Releasing third party repos
-===========================
-1
-2
-3
+Releasing third party repositories
+==================================
+1<br>
+2<br>
+3<br>
 
-Releasing Uberfire/Uberfire-extensions
+Releasing Uberfire-Uberfire-extensions
 --------------------------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Releasing Dashbuilder
 ---------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 KIE releases
-============
-1
-2
-3
+=============
+1<br>
+2<br>
+3<br>
 
 Push KIE release branch
 -----------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Deploy locally kie
 ------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Cherry-picking
 --------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Copy deployed KIE to Nexus
 --------------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Additional test coverage
 ------------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 jbpm-test-coverage
 ------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 backwards-compatible-check
 --------------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 KIE server martix
 -----------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 KIE workbench smoke tests matrix
 --------------------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Post release actions
 ====================
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Push tags
 ---------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Push Uberfire tag
 -----------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Push Dashbuilder tag
 --------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Push KIE tag
 ------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Release repositories on Nexus
 -----------------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Update to next development version
 ---------------------------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Update Uberfire
 --------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Update Dashbuilder
 -----------------
-1
-2
-3
+1<br>
+2<br>
+3<br>
 
 Update KIE
 ----------
-1
-2
-3
+1<br>
+2<br>
+3<br>
   
 
 
