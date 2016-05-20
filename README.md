@@ -12,6 +12,7 @@ Table of content
     * **[022.Releasing_Dashbuilder_remove-release-branches](#remove-old-branches)**
     * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#remove-old-branches)**
     * **[update JIRA to th next release](#close-release-on-jira)**
+    * **[update JIRA to th next release](#close-relese-on-jira)**
     * **[mail to the bsig team about the upcoming release](#mail_to_bsig)**
     
 * **[Uberfire, Uberfire-extensions, dasbhuilder "internal" releases](#uf_dash_releases)**
