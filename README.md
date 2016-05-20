@@ -4,14 +4,14 @@ Table of content
 ----------------
 
 * **[Introduction](#introduction)**
-* **[pre-release actions](#pre-release)**
+* **[Pre release actions](#pre-release-actions)**
     * **[Zanata pulls](#zanata-pulls)**
         * **[pull-Zanata-translation-changes-\<branch\>](#zanata-pulls)**
         * **[push-Zanata-translation-changes-\<branch\>](#zanata-pulls)**
-    * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-\<branch\>](#1.Releasing_Uberfire_and_uberfire-extensions)**
-    * **[022.Releasing_Dashbuilder_remove-release-branches](#022)**
-    * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#034)**
-    * **[update JIRA to th next release](#JIRA)**
+    * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-\<branch\>](#remove-old-branches)**
+    * **[022.Releasing_Dashbuilder_remove-release-branches](#remove-old-branches)**
+    * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#remove-old-branches)**
+    * **[update JIRA to th next release](#close-release-on-jira)**
     * **[mail to the bsig team about the upcoming release](#mail_to_bsig)**
     
 * **[Uberfire, Uberfire-extensions, dasbhuilder "internal" releases](#uf_dash_releases)**
@@ -52,12 +52,12 @@ When kie-team has to do a release it has two main reasons:
 
 All this possibilities are covered with the different scripts.
 
-The main views for releasng in Jenkins CI are:
+The main views for releasing in Jenkins CI are:
 
 * **[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata/)**
 * **[uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x)**
 * **[uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x)**
-* **[dashbuidoler-releases](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases/)**
+* **[dashbuilder-releases](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases/)**
 * **[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/)**
 * **[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/)**
 
@@ -66,17 +66,16 @@ Right now (April 2016) the master branch of droolsjbpm is 7.0.0-SNAPSHOT. There 
 it will be removed some day the 6.2.x view.
 
 
-Pre-release
-===========
+Pre release actions
+===================
 Before releasing kie we have first to pull latest Zanata translation changes from Zanata server and remove temporary branches used for previous releases for Uberfire, Uberfire-extensions, dashbuilder and
 and kie.
-Zanata-pulls
+Zanata pulls
 ------------
 There are two main scripts for pushing or pulling Zanata modules. *pull-Zanata-translation-changes-\<branch\>* and *push-Zanata-translation-changes-\<branch\>* available on the view 
-[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata/).<br>
-**push-Zanata-translation-changes-\<branch\>** pushes the new words in i18n files for beeing translated from droolsjbpm to Znata-server.<br>
-This script is triggered and executes every day (once a day).<br>
-**pull-Zanata-translation-changes-\<branch\>** is executed before a release (+/-two days). This script is not triggered automatically.<br>
+[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata/) of Jenkins CI.<br>
+**push-Zanata-translation-changes-\<branch\>** pushes the new words in i18n files for beeing translated from droolsjbpm to Zanata-server.<br>
+**pull-Zanata-translation-changes-\<branch\>** is executed before a release (+/-two days).<br>
 What this script does is basically:
 
     mvn -B zanata:pull-module (pulls all Zanata trabslations from Zanata server)
@@ -84,7 +83,7 @@ What this script does is basically:
     mvn native2ascii=native2ascii (only in repositories where this is needed)
     git adds and commits (if there are changes)
     raises a PR (pull request) to the repositories on github
-    
+
 The main repositories affected by Zanata changes are:
 
     uberfire
@@ -103,9 +102,28 @@ The main repositories affected by Zanata changes are:
     jbpm-dashboard
     kie-wb-distributions
     
-Remove-old-branches
-===================
-Before pushing new "release" branches to github/jboss-integration is is important to rewove old and stale bracnhes from previous releases.
+Remove old branches
+-------------------
+Before pushing new "release" branches to github/jboss-integration is is important to remove old branches from previous builds to avoid collencting these temporally branches.<br>
+Therefore there are three scripts to remove this branches.<br>
+
+**012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-\<branch\>** \[removes uberfire and uberfire-extensions branches\]<br>
+**022.Releasing_Dashbuilder_remove-release-branches** \[removes dashbuilder branches\]<br>
+**034.Releasing_KIE_remove-release-branches-\<branch\>** \[removes kie branches\]<br>
+All scripts have this parameters when building (Build with parameters):
+
+    the user has to select if it is a community (droolsjbpm) or a product (jboss-integration) branch
+    the exact branch name has to be edited here 
+        (r\<tag name\> for community i.e r6.4.0.Final)
+        (bsync-\<branch\>-yyyy.mm.dd for productization  i.e. bsync-6.4.x-2016.04.21)
+
+Close release on JIRA
+---------------------
+
+
+   
+
+    
 
 
  
