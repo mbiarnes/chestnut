@@ -11,8 +11,7 @@ Table of content
     * **[012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-\<branch\>](#remove-old-branches)**
     * **[022.Releasing_Dashbuilder_remove-release-branches](#remove-old-branches)**
     * **[034.Releasing_KIE_remove-release-branches-\<branch\>](#remove-old-branches)**
-    * **[update JIRA to th next release](#close-release-on-jira)**
-    * **[update JIRA to th next release](#close-relese-on-jira)**
+    * **[update JIRA to the next release](#close-release-on-jira)**
     * **[mail to the bsig team about the upcoming release](#mail_to_bsig)**
     
 * **[Uberfire, Uberfire-extensions, dasbhuilder "internal" releases](#uf_dash_releases)**
@@ -55,12 +54,13 @@ All this possibilities are covered with the different scripts.
 
 The main views for releasing in Jenkins CI are:
 
-* **[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata/)**
-* **[uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x)**
-* **[uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x)**
-* **[dashbuilder-releases](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases/)**
-* **[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/)**
-* **[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/)**
+* **[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata){:target="_blank"}**
+* **<a href="https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata" target="_blank">Zanata</a>**
+* **[uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x){:target="_blank"}**
+* **[uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x){:target="_blank"}**
+* **[dashbuilder-releases](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases/){:target="_blank"}**
+* **[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/){:target="_blank"}**
+* **[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/){:target="_blank"}**
 
 In future time there will be created new views and old views, that no longer are supported will dissapear.<br>
 Right now (April 2016) the master branch of droolsjbpm is 7.0.0-SNAPSHOT. There will be created a new 7.0.x branch soon and so created a new view and new scripts on Jenkins, also 
@@ -121,7 +121,8 @@ All scripts have this parameters when building (Build with parameters):
 Close release on JIRA
 ---------------------
 
-
+Mail to bsig
+------------
    
 
     
