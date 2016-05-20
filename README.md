@@ -14,30 +14,30 @@ Table of content
     * **[update JIRA to the next release](#close-release-on-jira)**
     * **[mail to the bsig team about the upcoming release](#mail_to_bsig)**
     
-* **[Uberfire, Uberfire-extensions, dasbhuilder "internal" releases](#uf_dash_releases)**
-    * **[010.Releasing_Uberfire_Uberfire-extensions_deploy-\<branch\>](#010)**
-    * **[020.Releasing_Dashbuilder_deploy](#020)**
+* **[Uberfire, Uberfire-extensions, dasbhuilder "internal" releases](#releasing-third-party-reps)**
+    * **[010.Releasing_Uberfire_Uberfire-extensions_deploy-\<branch\>](#releasing-uberfire/uberfire-extensions)**
+    * **[020.Releasing_Dashbuilder_deploy](#releasing-dashbuilder)**
                     
-* **[KIE releases](#kie_releases)**
-    * **[030.Releasing_KIE_push-branches-\<branch\>](#030)**
-    * **[031.Releasing_KIE_deploy_locally-\<branch\>](#031)**
+* **[KIE releases](#kie-releases)**
+    * **[030.Releasing_KIE_push-branches-\<branch\>](#push-kie-release-branch)**
+    * **[031.Releasing_KIE_deploy_locally-\<branch\>](#deploy-locally-kie)**
     * **[cherry-picks](#cherry-picking)**
-    * **[032.Releasing_KIE_copy_deployed_directory_to_Nexus-\<branch\>](#032)**
-        * *[032a.Releasing_KIE_kie_all_jbpm_test_coverage-\<branch\>](#032a)*
-        * *[032b.Releasing_KIE_kie-all-kie-api-backwards-compat-check-\<branch\>](#032b)*
-        * *[032c.Releasing_KIE_kie-all-kie-server-matrix-\<branch\>](#032c)*
-        * *[032d.Releasing_KIE_kie-all-kie-wb-smoke-tests-matrix-\<branch\>](#032d)*
+    * **[032.Releasing_KIE_copy_deployed_directory_to_Nexus-\<branch\>](#copy-deployed-kie-to-nexus)**
+        * *[032a.Releasing_KIE_kie_all_jbpm_test_coverage-\<branch\>](#jbpm-test-coverage)*
+        * *[032b.Releasing_KIE_kie-all-kie-api-backwards-compat-check-\<branch\>](#backwards-compatible-check)*
+        * *[032c.Releasing_KIE_kie-all-kie-server-matrix-\<branch\>](#kie-server-martix)*
+        * *[032d.Releasing_KIE_kie-all-kie-wb-smoke-tests-matrix-\<branch\>](#kie-workbench-smoke-tests-matrix)*
         
-* **[post-release actions](#post-release)**
-    * **[Push tags to droolsjbpm/jboss-integration](#push_tags)**
-        * *[011.Releasing_Uberfire_Uberfire-extensions_push-tag-\<branch\>](#011)*
-        * *[021.Releasing_Dashbuilder_push-tag](#021)*
-        * *[033.Releasing_KIE_push-tags-\<branch\>](#033)*
-    
-    * **[Updating to next development version](#next_development_version)**
-        * *[013.Releasing_Uberfire_Uberfire-extensions_update-next-development-version-\<branch\>](#013)*
-        * *[023.Releasing_Dashbuilder_update-next-development-version](#023)*
-        * *[035.Releasing_KIE_update-next-develop-version-\<branch\>](#035)*
+* **[post-release actions](#post-release-action)**
+    * **[Push tags to droolsjbpm/jboss-integration](#push-tags)**
+        * *[011.Releasing_Uberfire_Uberfire-extensions_push-tag-\<branch\>](#push-uberfire-tag)*
+        * *[021.Releasing_Dashbuilder_push-tag](#push-dashbuilder-tag)*
+        * *[033.Releasing_KIE_push-tags-\<branch\>](#push-kie-tag)*
+    * **[Release repositories](#release-repositories-on-nexus)**
+    * **[Updating to next development version](#update-to-next-development-version)**
+        * *[013.Releasing_Uberfire_Uberfire-extensions_update-next-development-version-\<branch\>](#update-uberfire)*
+        * *[023.Releasing_Dashbuilder_update-next-development-version](#update-dashbuilder)*
+        * *[035.Releasing_KIE_update-next-develop-version-\<branch\>](#update-kie)*
 
         
         
@@ -54,13 +54,12 @@ All this possibilities are covered with the different scripts.
 
 The main views for releasing in Jenkins CI are:
 
-* **[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata){:target="_blank"}**
-* **<a href="https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata" target="_blank">Zanata</a>**
-* **[uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x){:target="_blank"}**
-* **[uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x){:target="_blank"}**
-* **[dashbuilder-releases](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases/){:target="_blank"}**
-* **[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/){:target="_blank"}**
-* **[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/){:target="_blank"}**
+* **[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata)**
+* **[uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x)**
+* **[uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x)**
+* **[dashbuilder-releases](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases/)**
+* **[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/)**
+* **[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/)**
 
 In future time there will be created new views and old views, that no longer are supported will dissapear.<br>
 Right now (April 2016) the master branch of droolsjbpm is 7.0.0-SNAPSHOT. There will be created a new 7.0.x branch soon and so created a new view and new scripts on Jenkins, also 
@@ -124,8 +123,76 @@ Close release on JIRA
 Mail to bsig
 ------------
    
+Releasing third party repos
+===========================
 
-    
+Releasing Uberfire/Uberfire-extensions
+--------------------------------------
+
+Releasing Dashbuilder
+---------------------
+
+KIE releases
+============
+
+Push KIE release branch
+-----------------------
+
+Deploy locally kie
+------------------
+
+Cherry-picking
+--------------
+
+Copy deployed KIE to Nexus
+--------------------------
+
+Additional test coverage
+------------------------
+
+jbpm-test-coverage
+------------------
+
+backwards-compatible-check
+--------------------------
+
+KIE server martix
+-----------------
+
+KIE workbench smoke tests matrix
+--------------------------------
+
+Post release actions
+====================
+
+Push tags
+---------
+
+Push Uberfire tag
+-----------------
+
+Push Dashbuilder tag
+--------------------
+
+Push KIE tag
+------------
+
+Release repositories on Nexus
+-----------------------------
+
+Update to next development version
+---------------------------------
+
+Update Uberfire
+--------------
+
+Update Dashbuilder
+-----------------
+
+Update KIE
+----------
+  
+  
 
 
  
