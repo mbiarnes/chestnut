@@ -22,11 +22,11 @@ Table of content
     * **[Push KIE release branches](#push-kie-release-branch)**
     * **[Deploy locally KIE release artifacts](#deploy-locally-kie)**
     * **[Cherry-picking](#cherry-picking)**
-    * **[Copy deployed KIE binaries to Nexus-\<branch\>](#copy-deployed-kie-to-nexus)**
-        * *[jbpm_test_coverage-\<branch\>](#jbpm-test-coverage)*
-        * *[kie-api-backwards-compat-check-\<branch\>](#kie-api-backwards-compatible-check)*
-        * *[kie-server-matrix-\<branch\>](#kie-server-martix)*
-        * *[kie-wb-smoke-tests-matrix-\<branch\>](#kie-workbench-smoke-tests-matrix)*
+    * **[Copy deployed KIE binaries to Nexus](#copy-deployed-kie-to-nexus)**
+        * *[jbpm_test_coverage](#jbpm-test-coverage)*
+        * *[kie-api-backwards-compat-check](#kie-api-backwards-compatible-check)*
+        * *[kie-server-matrix](#kie-server-martix)*
+        * *[kie-wb-smoke-tests-matrix](#kie-workbench-smoke-tests-matrix)*
         
 * **[post-release actions](#post-release-actions)**
     * **[Push tags to droolsjbpm/jboss-integration](#push-tags)**
@@ -119,27 +119,67 @@ All scripts have this parameters when building (Build with parameters):
 
 Close release on JIRA
 ---------------------
-1<br>
-2<br>
-3<br>
+When a community release is upcoming there is a time period where people don't push anymore to the branch that serves as base for the release. In this time period developers
+can continue i.e working on JIRAs. When they select the version they can assign it to the recent version whereas this version is already building. So these JIRAs will be assigned to the recent
+version but will not be in this release. Therefore it is good to close the release on JIRA **without** a date, so all not yet fixed JIRAs will be migrated to the next version.<br>
+Once the release is done the date will be edited.<br>
+**<font color="red">IMPORTANT</font>:** this only is required for community releases!
 
 Mail to bsig team
 -----------------
-1<br>
-2<br>
-3<br>
+Before starting the release procedure (two days before) it is important to altert the team about this.
+When releasing for community a mail to <font color="blue">bsig@redhat.com</font> or <font color="blue">bsig-all@redhat.com</font> should be send announcing the new release.
+ 
+    EXAMPLE MAIL:
+    Next week on Tuesday, 5th of April, we are going to branch the 6.4.x
+    for releasing the community 6.4.0.CR3.
+    It is supposed that we have the tag for it on Tuesday EOD so we can
+    do the prod tag 6.3.0.ER3 on Wednesday.
+    I hope you will have everything prepared for Tuesday.
+    Have in mind that we still can cherry-pick something that has to be
+    in the CR3. The same procedure as every time, a mail to me and in CC Edson and Kris with
+    the commits to cherry pick.
+
+It is important that everyone who could not finish his task until the announced day should send a mail to the release engineer (<font color="blue">mbiarnes@redhat.com</font>) and to Edson (<font color="blue">etirelli@redhat.com</font>) 
+and Kris (<font color="blue">kverlaen@redhat.com</font>).<br>
+There can also be changed the subject on the XChat to inform the team about the status of the release.
 
 Releasing third party repositories
 ==================================
-1<br>
-2<br>
-3<br>
+Once all steps specified in this doc until here are closed and before beginning to release the KIE repositories,<br>
+Uberfire<br>
+Uberfire-extenbsions (only versions 0.7.x and 0.8.x)<br>
+and Dashbuilder<br>
+have to be released.
+ 
 
 Releasing Uberfire-Uberfire-extensions
 --------------------------------------
-1<br>
-2<br>
-3<br>
+For Uberfire and Uberfire-extensions there exist different views on [Jenkins CI](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com) depending on the branch we want to release:
+
+0.7.x : [uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x)<br>
+0.8.x : [uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x)<br>
+master : [uf-releases-master](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-master)<br>
+
+Each view has different jobs, for releasing this job should be run:<br><br>
+**010.Releasing_Uberfire_Uberfire-extensions_deploy_\<branch\>**<br>
+
+Basically this job<br>
+- clones the repository<br>
+- creates a release branch<br>
+- changes version on this release branch<br>
+- builds & deploys the repository locally<br>
+- uploads the binaries to Nexus<br><br>
+- pushes this release branches to droolsjbpm (community) or jboss-integration (product)<br>
+
+This job is named `010.Releasing_Uberfire_Uberfire-extensions_deploy_\<branch\>` for 0.7.x and 0.8.x, for master it is named `010.Releasing_Uberfire_deploy-master`.<br>
+
+This job runs parametrized.<br><br>
+**TARGET**: community or productized<br>
+**RELEASE_BRANCH**: name of the release branch that should be created<br>
+**oldVersion**: the version the module has before changing the version (only available in 0.7.x and 0.8.x)<br>
+**newVersion**: the version the poms will be upgraded to after the version change<br>
+In job *`010.Releasing_Uberfire_deploy-master`* the parameter **`oldVersion`** was removed.
 
 Releasing Dashbuilder
 ---------------------
