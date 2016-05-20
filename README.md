@@ -172,7 +172,7 @@ Basically this job<br>
 - uploads the binaries to Nexus<br><br>
 - pushes this release branches to droolsjbpm (community) or jboss-integration (product)<br>
 
-This job is named `010.Releasing_Uberfire_Uberfire-extensions_deploy_\<branch\>` for 0.7.x and 0.8.x, for master it is named `010.Releasing_Uberfire_deploy-master`.<br>
+This job is named *`010.Releasing_Uberfire_Uberfire-extensions_deploy_<branch>`* for 0.7.x and 0.8.x, for master it is named *`010.Releasing_Uberfire_deploy-master`*.<br>
 
 This job runs parametrized.<br><br>
 **TARGET**: community or productized<br>
