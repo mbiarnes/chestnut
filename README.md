@@ -294,7 +294,7 @@ When the whole branch should override the existing branch:<br>
     > git push -f TARGET RB (pushes forced the RB branch to the TARGET - the existing RB will be replaced by the new local RB)
     
 Depending on the selected procedure to cherry-pick or override the realease branches on droolsjbpm (community) or jboss-integration (prod) will be renewed.
-     
+AAA     
 Copy deployed KIE binaries to Nexus
 -----------------------------------
 1<br>
