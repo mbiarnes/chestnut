@@ -5,7 +5,7 @@ Table of content
 
 * **[Introduction](#introduction)**
 * **[Pre release actions](#pre-release-actions)**
-    * **[Zanata pulls](#zanata-pulls)**
+    * **[Zanata](#zanata)**
         * **[Pull Zanata translation changes](#zanata-pulls)**
         * **[Push Zanata translation changes](#zanata-pulls)**
     * **[Remove old Uberfire & Ubefire-extensions release branches](#remove-old-branches)**
@@ -63,15 +63,16 @@ The main views for releasing in Jenkins CI are:
 
 In future time there will be created new views and old views, that no longer are supported will dissapear.<br>
 Right now (April 2016) the master branch of droolsjbpm is 7.0.0-SNAPSHOT. There will be created a new 7.0.x branch soon and so created a new view and new scripts on Jenkins, also 
-it will be removed some day the 6.2.x view.
+it will be removed some day the 6.2.x view.<br>
+The server where the releases are build a slave for Jenkins CI is **kie-releases.lab.eng.brq.redhat.com**.
 
 
 Pre release actions
 ===================
 Before releasing kie we have first to pull latest Zanata translation changes from Zanata server and remove temporary branches used for previous releases for Uberfire, Uberfire-extensions, dashbuilder and
 and kie.
-Zanata pulls
-------------
+Zanata
+------
 There are two main scripts for pushing or pulling Zanata modules. *pull-Zanata-translation-changes-\<branch\>* and *push-Zanata-translation-changes-\<branch\>* available on the view 
 [Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata/) of Jenkins CI.<br>
 **push-Zanata-translation-changes-\<branch\>** pushes the new words in i18n files for beeing translated from droolsjbpm to Zanata-server.<br>
@@ -148,7 +149,7 @@ Releasing third party repositories
 ==================================
 Once all steps specified in this doc until here are closed and before beginning to release the KIE repositories,<br>
 Uberfire<br>
-Uberfire-extenbsions (only versions 0.7.x and 0.8.x)<br>
+Uberfire-extensions (only versions 0.7.x and 0.8.x)<br>
 and Dashbuilder<br>
 have to be released.
  
@@ -174,43 +175,126 @@ Basically this job<br>
 
 This job is named *`010.Releasing_Uberfire_Uberfire-extensions_deploy_<branch>`* for 0.7.x and 0.8.x, for master it is named *`010.Releasing_Uberfire_deploy-master`*.<br>
 
-This job runs parametrized.<br><br>
+This job runs **parametrized**.<br><br>
 **TARGET**: community or productized<br>
 **RELEASE_BRANCH**: name of the release branch that should be created<br>
 **oldVersion**: the version the module has before changing the version (only available in 0.7.x and 0.8.x)<br>
 **newVersion**: the version the poms will be upgraded to after the version change<br>
 In job *`010.Releasing_Uberfire_deploy-master`* the parameter **`oldVersion`** was removed.
 
+When the job finished a kie-staging-repository of Uberfire (and Ubefire-extensions for 0.7.x and 0.8.x) will be created and closed on [Nexus](https://repository.jboss.org/nexus/index.html#stagingRepositories)
+
+
+
 Releasing Dashbuilder
 ---------------------
-1<br>
-2<br>
-3<br>
+For Dashbuilder there exist two diffrerent views on [Jenkins CI](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com) depending on the branch ew want to release:
+
+0.3.x and 0.4.x branch:[dashbuilder-releases 0.3.x and 0.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases%200.3.x%20and%200.4.x/)<br>
+master: [dashbuilder-releases-master](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases%20master/)
+
+Basically this job<br>
+- clones the repository<br>
+- creates a release branch<br>
+- changes version on this release branch<br>
+- builds & deploys the repository locally<br>
+- uploads the binaries to Nexus<br><br>
+- pushes this release branches to droolsjbpm (community) or jboss-integration (product)<br>
+
+This job is named *`020.Releasing_Dashbuilder_deploy`* for 0.3.x and 0.4.x branch and *`020.Releasing_Dashbuilder_deploy-master`* for master. <br>
+
+This job runs **parametrized**.<br><br>
+**TARGET**: community or productized<br>
+**BASE_BRANCH**: could be 0.3.x or 0.4.x (for *`020.Releasing_Dashbuilder_deploy-master`* the BASE_BRANCH is master and this parameter was removed)<br>
+**RELEASE_BRANCH**: name of the release branch that should be created<br>
+**oldVersion**: the version the module has before changing the version<br> (or *`020.Releasing_Dashbuilder_deploy-master`* this parameter was removed)
+**newVersion**: the version the poms will be upgraded to after the version change<br>
+**UBERFIRE_VERSION**: the version of Uberfire used by Dashbuilder
+**ERRAI_VERSION**: the version of Errai used by Dashbuilder
+
+
+When the job finished a kie-staging-repository of Dashbuilder will be created and closed on [Nexus](https://repository.jboss.org/nexus/index.html#stagingRepositories)
+
+
 
 KIE releases
 =============
-1<br>
-2<br>
-3<br>
+For releasing the KIE repositories the exist two different views on [Jenkins CI](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com) depending on the branch ew want to release:
+
+6.3.x:[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/)<br>
+6.4.x:[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/)
+
+For coming up 7.0.x branch (now master) there will be generated a new view. This is not yet existing.<br>
+Both views have different jobs to:<br>
+- clone the repository<br>
+- create a release branch<br>
+- change version on this release branch<br>
+- build & deploy the repository locally<br>
+- upload the binaries to Nexus<br><br>
+- push the release branches to droolsjbpm (community) or jboss-integration (product)<br>
+- update kie repositories to next development version
+
 
 Push KIE release branches
 -------------------------
-1<br>
-2<br>
-3<br>
+The jobs [030.Releasing_KIE_push-release-branches-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/030.Releasing_KIE_push-release-branches-6.3.x/) or [030.Releasing_KIE_push-release-branches-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/030.Releasing_KIE_push-release-branches-6.4.x/)
+or create the release branch based on a branch or previous tag,<br> upgrade its version and pushes the branch to community or productization.<br>
+
+
+This job runs **parametrized**.<br><br>
+**TARGET**:community or productized<br>
+**SOURCE**:could be the community-branch (6.3.x. or 6.4.x, depending on selected job as it is hard coded), a previous tag of community or productiaztion<br>
+**TAG**:only to edit if **SOURCE** is a previous tag<br>
+**RELEASE_VERSION**:the version the poms will be upgraded to after the version change<br>
+**RELEASE_BRANCH**:name of the release branch that should be created<br>
+**UBERFIRE_VERSION**:the version of Uberfire used by KIE<br>
+**DASHBUILDER_VERSION**:the version of Dashbuilder used by KIE<br>
+
+Right now the ERRAI version on mastrer is a -SNAPSHOT version whereas the ERRAI version on 6.3.x. and 6.4.x is \*.Final version.<br>
+When creating a new branch based on master (7.0.0) this will be changed since in community builds -SNAPSHOTs can't be used.<br>
 
 Deploy locally kie
 ------------------
-1<br>
-2<br>
-3<br>
+The jobs [031.Releasing_KIE_deployLocally-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/031.Releasing_KIE_deployLocally-6.3.x/), [031.Releasing_KIE_deployLocally-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/031.Releasing_KIE_deployLocally-6.4.x/) and [031.Releasing_KIE_deployLocally-master](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/031.Releasing_KIE_deployLocally-master/)<br>
+fetch the just created and pushed *release branches* from community or jboss-integration and build and deploy them locally. This means the artifacts are not deployed directly to Nexus but rather
+to a local directory on the server. (This saves a lot of time).<br>
+
+
+This job runs **parametrized**.<br>
+**TARGET**:community or productized<br>
+**RELEASE_BRANCH**:name of the release branch that should be fetched for this release<br>
+
+These jobs run the build and deploy. Looking at the Jenkins UI it can be controlled if the build failed and the if the unit tests run or failed.<br>
+If the artifacts will be downloaded to do some smoke tests, they can be downloaded here:<br>
+[KIE-internal-group](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/) (binaries for prod tags)<br>
+[KIE-group](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/) (binaries fro community releases)<br>
 
 Cherry-picking
 --------------
-1<br>
-2<br>
-3<br>
+Once the first check (sanity checks, smoke tests) was done it should be considered that some bugs will be encoutered. These bugs will be fixed and then commited to the correspondent upstream branches. 
+Thus these commits have to be fetched and rebased to the respective branches.<br>
+When a cherry-pick **X** on the release-branch **RB** of a commit **ID** from branch **B** in repository **R** has to be done::<br>
 
+    > cd directory R
+    > git checkout branch B
+    > git fetch origin (or however is called the remote)
+    > git rebase origin/B B
+    > git log -5 --pretty=oneline (to get the commitId to cherry-pick)
+    > git checkout RB
+    > git cherry-pick -x ID
+
+Often it is better and more easy to override the whole release-branch instead if cherry-picking. Since the release-branches are on droolsjbpm or jboss-integration it is easy to override them.<br>
+When the whole branch should override the existing branch:<br>
+
+    > cd directory R
+    > remove local branch it it exist already
+    > git fetch origin (or however is called the remote)
+    > git rebase origin/B B
+    > git checkout -b RB B (creates a branch RB copied from B)
+    > git push -f TARGET RB (pushes forced the RB branch to the TARGET - the existing RB will be replaced by the new local RB)
+    
+Depending on the selected procedure to cherry-pick or override the realease branches on droolsjbpm (community) or jboss-integration (prod) will be renewed.
+     
 Copy deployed KIE binaries to Nexus
 -----------------------------------
 1<br>
