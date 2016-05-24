@@ -21,6 +21,7 @@ Table of content
 * **[KIE releases](#kie-releases)**
     * **[Push KIE release branches](#push-kie-release-branch)**
     * **[Deploy locally KIE release artifacts](#deploy-locally-kie)**
+    * **[Sanity Checks](#sanity-checks)**
     * **[Cherry-picking](#cherry-picking)**
     * **[Copy deployed KIE binaries to Nexus](#copy-deployed-kie-to-nexus)**
         * *[jbpm_test_coverage](#jbpm-test-coverage)*
@@ -269,11 +270,28 @@ If the artifacts will be downloaded to do some smoke tests, they can be download
 [KIE-internal-group](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/) (binaries for prod tags)<br>
 [KIE-group](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/) (binaries fro community releases)<br>
 
+Sanity checks
+-------------
+Once the build has concluded these three artifacts have to be downloaded<br>
+[drools-distribution](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/drools/drools-distribution) /\<version\>/drools-distribution-\<version\>.zip<br>
+[droolsjbpm-integration-distribution](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/drools/droolsjbpm-integration-distribution) /\<version\>/droolsjbpm-integration-distribution-\<version\>.zip<br>
+[optaplanner-distribution](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/optaplanner/optaplanner-distribution) /\<version\>/optaplanner-distribution-\<version\>.zip<br>
+These zips should be unzipped. This will create a dirctory (drools-distribution, droolsjbpm-integration-distribution and optaplanner-distribution). In these directories are the folders /examples. In each emaple folder there is
+a runExamples.sh that should be executed.<br>
+When running the JVM will pop up small menu windows. All menu options should be tested.<br>
+
+Another sanity check is simply to verify if the `kie-wb-<version>-<container>.war` or `kie-droolswb-<version>-<container>.war` is deployable in different containers.<br>
+The wars can be downloaded at<br>
+[kie-wb](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/kie/kie-wb-distribution-wars) /\<version\>/
+kie-wb-distribution-wars-\<version\>-\<container\>.war<br>and<br>
+[kie-drools-wb](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/kie/kie-drools-wb-distribution-wars) /\<version\>/kie-drools-wb-distribution-wars-\<version\>-\<container\>.war
+
 Cherry-picking
 --------------
-Once the first check (sanity checks, smoke tests) was done it should be considered that some bugs will be encoutered. These bugs will be fixed and then commited to the correspondent upstream branches. 
-Thus these commits have to be fetched and rebased to the respective branches.<br>
+Once the first check (sanity checks, smoke tests) was done it should be considered that some bugs will be discovered. These bugs will be fixed and then commited to the correspondent upstream branches. 
+Thus these commits have to be fetched and rebased to the respective release branches.<br>
 When a cherry-pick **X** on the release-branch **RB** of a commit **ID** from branch **B** in repository **R** has to be done::<br>
+When a commit **ID** of repository **R** on a branch **B** has to be cherry-picked to the release-branch 
 
     > cd directory R
     > git checkout branch B
@@ -294,7 +312,7 @@ When the whole branch should override the existing branch:<br>
     > git push -f TARGET RB (pushes forced the RB branch to the TARGET - the existing RB will be replaced by the new local RB)
     
 Depending on the selected procedure to cherry-pick or override the realease branches on droolsjbpm (community) or jboss-integration (prod) will be renewed.
-AAA     
+    
 Copy deployed KIE binaries to Nexus
 -----------------------------------
 1<br>
