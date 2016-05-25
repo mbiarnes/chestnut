@@ -268,7 +268,9 @@ This job runs **parametrized**.<br>
 These jobs run the build and deploy. Looking at the Jenkins UI it can be controlled if the build failed and the if the unit tests run or failed.<br>
 If the artifacts will be downloaded to do some smoke tests, they can be downloaded here:<br>
 [KIE-internal-group](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/) (binaries for prod tags)<br>
-[KIE-group](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/) (binaries fro community releases)<br>
+[KIE-group](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/) (binaries for community releases)
+
+
 
 Sanity checks
 -------------
@@ -279,12 +281,20 @@ Once the build has concluded these three artifacts have to be downloaded<br>
 These zips should be unzipped. This will create a dirctory (drools-distribution, droolsjbpm-integration-distribution and optaplanner-distribution). In these directories are the folders /examples. In each emaple folder there is
 a runExamples.sh that should be executed.<br>
 When running the JVM will pop up small menu windows. All menu options should be tested.<br>
+These tests normally should only be run when a community release it done.
 
 Another sanity check is simply to verify if the `kie-wb-<version>-<container>.war` or `kie-droolswb-<version>-<container>.war` is deployable in different containers.<br>
 The wars can be downloaded at<br>
+**PRODUCT:**<br>
 [kie-wb](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/kie/kie-wb-distribution-wars) /\<version\>/
 kie-wb-distribution-wars-\<version\>-\<container\>.war<br>and<br>
 [kie-drools-wb](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/kie/kie-drools-wb-distribution-wars) /\<version\>/kie-drools-wb-distribution-wars-\<version\>-\<container\>.war
+<br>or<br>
+**COMMUNITY:**<br>
+[kie-wb](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/kie/kie-wb-distribution-wars) /\<version\>/
+kie-wb-distribution-wars-\<version\>-\<container\>.war<br>and<br>
+[kie-drools-wb](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/kie/kie-drools-wb-distribution-wars) /\<version\>/kie-drools-wb-distribution-wars-\<version\>-\<container\>.war
+
 
 Cherry-picking
 --------------
@@ -300,24 +310,25 @@ When a commit **ID** of repository **R** on a branch **B** has to be cherry-pick
     > git log -5 --pretty=oneline (to get the commitId to cherry-pick)
     > git checkout RB
     > git cherry-pick -x ID
+    > git push "remote" RB (where remote is droolsjbpm or jboss-integration)
 
 Often it is better and more easy to override the whole release-branch instead if cherry-picking. Since the release-branches are on droolsjbpm or jboss-integration it is easy to override them.<br>
 When the whole branch should override the existing branch:<br>
 
     > cd directory R
-    > remove local branch it it exist already
-    > git fetch origin (or however is called the remote)
-    > git rebase origin/B B
-    > git checkout -b RB B (creates a branch RB copied from B)
-    > git push -f TARGET RB (pushes forced the RB branch to the TARGET - the existing RB will be replaced by the new local RB)
+    > git fetch "remote" (however is called the remote)
+    > git rebase "remote"/B B
+    > git checkout RB
+    > git rebase B (as the last commit on RB is the commit that upgrades the version, with a rebase this will be the last commit in history)
+    > git push "remote" RB
     
-Depending on the selected procedure to cherry-pick or override the realease branches on droolsjbpm (community) or jboss-integration (prod) will be renewed.
-    
+Depending on the selected procedure to cherry-pick or override the realease branches on droolsjbpm (community) or jboss-integration (prod) will be updated.<br>
+If sanity testing, smoke testing (people of KIE team) and cherry-picks were done the step of [deploying locally](#Deploy-locally-kie) has to be repeated.
+     
+     
 Copy deployed KIE binaries to Nexus
 -----------------------------------
-1<br>
-2<br>
-3<br>
+If sanity testing, smoke testing (people of KIE team) and cherry-picks were done the 
 
 Additional test coverage
 ------------------------
