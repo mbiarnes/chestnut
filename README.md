@@ -242,7 +242,7 @@ The jobs [030.Releasing_KIE_push-release-branches-6.3.x](https://kie-jenkins.rhe
 or create the release branch based on a branch or previous tag,<br> upgrade its version and pushes the branch to community or productization.<br>
 
 
-This job runs **parametrized**.<br><br>
+This job runs **parametrized**:<br><br>
 **TARGET**:community or productized<br>
 **SOURCE**:could be the community-branch (6.3.x. or 6.4.x, depending on selected job as it is hard coded), a previous tag of community or productiaztion<br>
 **TAG**:only to edit if **SOURCE** is a previous tag<br>
@@ -323,24 +323,31 @@ When the whole branch should override the existing branch:<br>
     > git push "remote" RB
     
 Depending on the selected procedure to cherry-pick or override the realease branches on droolsjbpm (community) or jboss-integration (prod) will be updated.<br>
-If sanity testing, smoke testing (people of KIE team) and cherry-picks were done the step of [deploying locally](#Deploy-locally-kie) has to be repeated.
+If sanity testing, smoke testing (people of KIE team) and cherry-picks were done the step of [deploying locally](#deploy-locally-kie) has to be repeated.
      
      
 Copy deployed KIE binaries to Nexus
 -----------------------------------
-If sanity testing, smoke testing (people of KIE team) and cherry-picks were done the 
+If finally the build was successful, the artifacts were deployed locally and the unit tests executed during the build run without failures the artifacts could be copied to [Nexus](https://repository.jboss.org/nexus/index.html#stagingRepositories)
+running this script:<br>
+6.3.x: [032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.3.x/)<br>
+6.4.x: [032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.4.x/)<br>
+<br>
+These jobs copy the locally deployed artifacts **(Deploy_dir)** to Nexus.<br>
+These jobs run **parametrized**:<br><br>
+**TARGET**:community or productized<br>
+
 
 Additional test coverage
 ------------------------
-1<br>
-2<br>
-3<br>
+The previous job triggers the following listed additional tests
 
-jbpm-test-coverage
+
+&nbsp;&nbsp;&nbsp;jbpm-test-coverage
 ------------------
-1<br>
-2<br>
-3<br>
+&nbsp;&nbsp;&nbsp;6.3.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x/)<br>
+&nbsp;&nbsp;&nbsp;6.4.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x/)<br>
+&nbsp;&nbsp;&nbsp;These tests execute tests on jbpm source code (integration tests). Whereas on 6.3.x the test are only executed with JAVA 1.6, in 6.4.x they are executed with JAVA 1.6, 1.7 and 1.8.
 
 kie api backwards compatible check
 ----------------------------------
@@ -348,7 +355,7 @@ kie api backwards compatible check
 2<br>
 3<br>
 
-KIE server martix
+   KIE server martix
 -----------------
 1<br>
 2<br>
