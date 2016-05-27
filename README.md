@@ -39,6 +39,7 @@ Table of content
         * *[Update Uberfire & Uberfire-extensions](#update-uberfire)*
         * *[Update Dashbuilder](#update-dashbuilder)*
         * *[Update KIE ](#update-kie)*
+    * **[Miguelardo](#miguelardo-petardo)**    
 
         
         
@@ -340,7 +341,7 @@ These jobs run **parametrized**:<br><br>
 
 Additional test coverage
 ------------------------
-The previous job triggers the following listed additional tests
+The previous job triggers the following listed additional tests Miguelardo-petardo
 
 
 &nbsp;&nbsp;&nbsp;jbpm-test-coverage
@@ -352,9 +353,9 @@ The previous job triggers the following listed additional tests
 
 &nbsp;&nbsp;&nbsp;kie api backwards compatible check
 ----------------------------------
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.3.x:[]()<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.4.x:[]()<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks a backward compatibility of the KIE API. By default, the current build is checked against the last released (non-SNAPSHOT) version.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.3.x:[032c.Releasing_KIE_kie-all-kie-server-matrix-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032c.Releasing_KIE_kie-all-kie-server-matrix-6.3.x)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.4.x:[032c.Releasing_KIE_kie-all-kie-server-matrix-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032c.Releasing_KIE_kie-all-kie-server-matrix-6.4.x)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks a backward compatibility of the KIE API. By default, the current build is checked against the last released<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(non-SNAPSHOT) version.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The check can't be added directly to the default builds as it requires Java 8, to run.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Once KIE moves to JDK 8 for builds, the check should be moved directly to the default build.<br>
 
