@@ -344,8 +344,8 @@ Additional test coverage
 The previous job triggers the following listed additional tests Miguelardo-petardo
 
 
-&nbsp;&nbsp;&nbsp;jbpm-test-coverage
-------------------
+ 
+###jbpm-test-coverage
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.3.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x/)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.4.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x/)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;These tests execute tests on jbpm source code (integration tests).<br>
