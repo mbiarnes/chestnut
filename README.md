@@ -345,23 +345,27 @@ The previous job triggers the following listed additional tests
 
 &nbsp;&nbsp;&nbsp;jbpm-test-coverage
 ------------------
-&nbsp;&nbsp;&nbsp;6.3.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x/)<br>
-&nbsp;&nbsp;&nbsp;6.4.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x/)<br>
-&nbsp;&nbsp;&nbsp;These tests execute tests on jbpm source code (integration tests). Whereas on 6.3.x the test are only executed with JAVA 1.6, in 6.4.x they are executed with JAVA 1.6, 1.7 and 1.8.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.3.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x/)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.4.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x/)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;These tests execute tests on jbpm source code (integration tests).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Whereas on 6.3.x the test are only executed with JAVA 1.6, in 6.4.x they are executed with JAVA 1.6, 1.7 and 1.8.
 
-kie api backwards compatible check
+&nbsp;&nbsp;&nbsp;kie api backwards compatible check
 ----------------------------------
-1<br>
-2<br>
-3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.3.x:[]()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.4.x:[]()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks a backward compatibility of the KIE API. By default, the current build is checked against the last released (non-SNAPSHOT) version.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The check can't be added directly to the default builds as it requires Java 8, to run.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Once KIE moves to JDK 8 for builds, the check should be moved directly to the default build.<br>
 
-   KIE server martix
+
+&nbsp;&nbsp;&nbsp;KIE server martix
 -----------------
 1<br>
 2<br>
 3<br>
 
-KIE workbench smoke tests matrix
+&nbsp;&nbsp;&nbsp;KIE workbench smoke tests matrix
 --------------------------------
 1<br>
 2<br>
