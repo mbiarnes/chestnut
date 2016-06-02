@@ -34,7 +34,7 @@ Table of content
         * *[Push Uberfire & Uberfire-extensions tag](#push-uberfire-tag)*
         * *[Push Dashbuilder tag](#push-dashbuilder-tag)*
         * *[Push KIE tags](#push-kie-tags)*
-    * **[Release repositories to Nexus](#release-repositories-to-nexus)**    
+    * **[Release staging repositories](#release-staging-repositories)**    
     * **[Community](#community)**    
         *  *[Updating to next development version](#update-to-next-development-version)*
             * *[Update Uberfire & Uberfire-extensions](#update-uberfire)*
@@ -109,10 +109,14 @@ The main repositories affected by Zanata changes are:
     optaplanner-wb
     jbpm-dashboard
     kie-wb-distributions
+
+The jobs for Zanata push is executed every Monday (triggered).<br>
+The jobs for Zanata pull is executed one day before the release, because the raised PRs should be merged before releasing. In some cases the jobs are triggered manually.<br>
+It is to define if it makes more sense to run the scripts every day.
     
 Remove old branches
 -------------------
-Before pushing new "release" branches to github/jboss-integration is is important to remove old branches from previous builds to avoid collencting these temporally branches.<br>
+Before pushing new "release" branches to github/jboss-integration is is important to remove old branches from previous builds to avoid collecting these temporary branches.<br>
 Therefore there are three scripts to remove this branches.<br>
 
 **012.Releasing_Uberfire_Ubefire-extensions_remove-release-branches-\<branch\>** \[removes uberfire and uberfire-extensions branches\]<br>
@@ -160,14 +164,13 @@ Uberfire-extensions (only versions 0.7.x and 0.8.x)<br>
 and Dashbuilder<br>
 have to be released.
  
-
 Releasing Uberfire-Uberfire-extensions
 --------------------------------------
 For Uberfire and Uberfire-extensions there exist different views on [Jenkins CI](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com) depending on the branch we want to release:
 
-0.7.x : [uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x)<br>
-0.8.x : [uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x)<br>
-master : [uf-releases-master](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-master)<br>
+0.7.x:&nbsp;[uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x)<br>
+0.8.x:&nbsp;[uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x)<br>
+master:&nbsp;[uf-releases-master](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-master)<br>
 
 Each view has different jobs, for releasing this job should be run:<br><br>
 **010.Releasing_Uberfire_Uberfire-extensions_deploy_\<branch\>**<br>
@@ -191,14 +194,12 @@ In job *`010.Releasing_Uberfire_deploy-master`* the parameter **`oldVersion`** w
 
 When the job finished a kie-staging-repository of Uberfire (and Ubefire-extensions for 0.7.x and 0.8.x) will be created and closed on [Nexus](https://repository.jboss.org/nexus/index.html#stagingRepositories)
 
-
-
 Releasing Dashbuilder
 ---------------------
 For Dashbuilder there exist two diffrerent views on [Jenkins CI](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com) depending on the branch ew want to release:
 
-0.3.x and 0.4.x branch:[dashbuilder-releases 0.3.x and 0.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases%200.3.x%20and%200.4.x/)<br>
-master: [dashbuilder-releases-master](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases%20master/)
+0.3.x and 0.4.x branch:&nbsp;[dashbuilder-releases 0.3.x and 0.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases%200.3.x%20and%200.4.x/)<br>
+master:&nbsp;[dashbuilder-releases-master](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases%20master/)
 
 Basically this job<br>
 - clones the repository<br>
@@ -222,14 +223,12 @@ This job runs **parametrized**.<br><br>
 
 When the job finished a kie-staging-repository of Dashbuilder will be created and closed on [Nexus](https://repository.jboss.org/nexus/index.html#stagingRepositories)
 
-
-
 KIE releases
 =============
 For releasing the KIE repositories the exist two different views on [Jenkins CI](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com) depending on the branch ew want to release:
 
-6.3.x:[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/)<br>
-6.4.x:[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/)
+6.3.x:&nbsp;[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/)<br>
+6.4.x:&nbsp;[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/)
 
 For coming up 7.0.x branch (now master) there will be generated a new view. This is not yet existing.<br>
 Both views have different jobs to:<br>
@@ -240,7 +239,6 @@ Both views have different jobs to:<br>
 - upload the binaries to Nexus<br><br>
 - push the release branches to droolsjbpm (community) or jboss-integration (product)<br>
 - update kie repositories to next development version
-
 
 Push KIE release branches
 -------------------------
@@ -276,8 +274,6 @@ If the artifacts will be downloaded to do some smoke tests, they can be download
 [KIE-internal-group](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/) (binaries for prod tags)<br>
 [KIE-group](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/) (binaries for community releases)
 
-
-
 Sanity checks
 -------------
 Once the build has concluded these three artifacts have to be downloaded<br>
@@ -300,7 +296,6 @@ kie-wb-distribution-wars-\<version\>-\<container\>.war<br>and<br>
 [kie-wb](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/kie/kie-wb-distribution-wars) /\<version\>/
 kie-wb-distribution-wars-\<version\>-\<container\>.war<br>and<br>
 [kie-drools-wb](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/kie/kie-drools-wb-distribution-wars) /\<version\>/kie-drools-wb-distribution-wars-\<version\>-\<container\>.war
-
 
 Cherry-picking
 --------------
@@ -330,35 +325,33 @@ When the whole branch should override the existing branch:<br>
     
 Depending on the selected procedure to cherry-pick or override the realease branches on droolsjbpm (community) or jboss-integration (prod) will be updated.<br>
 If sanity testing, smoke testing (people of KIE team) and cherry-picks were done the step of [deploying locally](#deploy-locally-kie) has to be repeated.
-     
-     
+          
 Copy deployed KIE binaries to Nexus
 -----------------------------------
 If finally the build was successful, the artifacts were deployed locally and the unit tests executed during the build run without failures the artifacts could be copied to [Nexus](https://repository.jboss.org/nexus/index.html#stagingRepositories)
 running this script:<br>
 
-6.3.x: [032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.3.x/)<br>
-6.4.x: [032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.4.x/)<br>
+6.3.x:&nbsp;[032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.3.x/)<br>
+6.4.x:&nbsp;[032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032.Releasing_KIE_copy-deployed-directory-to-Nexus-6.4.x/)<br>
 <br>
 These jobs copy the locally deployed artifacts **(Deploy_dir)** to Nexus.<br>
 These jobs run **parametrized**:<br><br>
 **TARGET**:community or productized<br>
-
 
 Additional test coverage
 ------------------------
 The previous job triggers the following listed additional tests
  
 ### jbpm test coverage
-6.3.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x/)<br>
-6.4.x: [032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x/)<br>
+6.3.x:&nbsp;[032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-6.3.x/)<br>
+6.4.x:&nbsp;[032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032a.Releasing_KIE_kie-all-jbpm-test-coverage-matrix-6.4.x/)<br>
 
 These tests execute tests on jbpm source code (integration tests).<br>
 Whereas on 6.3.x the test are only executed with JAVA 1.6, in 6.4.x they are executed with JAVA 1.6, 1.7 and 1.8.
 
 ### kie api backwards compatible check
-6.3.x:[032c.Releasing_KIE_kie-all-kie-server-matrix-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032c.Releasing_KIE_kie-all-kie-server-matrix-6.3.x)<br>
-6.4.x:[032c.Releasing_KIE_kie-all-kie-server-matrix-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032c.Releasing_KIE_kie-all-kie-server-matrix-6.4.x)<br>
+6.3.x:&nbsp;[032c.Releasing_KIE_kie-all-kie-server-matrix-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/032c.Releasing_KIE_kie-all-kie-server-matrix-6.3.x)<br>
+6.4.x:&nbsp;[032c.Releasing_KIE_kie-all-kie-server-matrix-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/032c.Releasing_KIE_kie-all-kie-server-matrix-6.4.x)<br>
 
 Checks a backward compatibility of the KIE API. By default, the current build is checked against the last released (non-SNAPSHOT) version.<br>
 The check can't be added directly to the default builds as it requires Java 8, to run.<br>
@@ -376,20 +369,22 @@ Once KIE moves to JDK 8 for builds, the check should be moved directly to the de
 
 Post release actions
 ====================
-1<br>
-2<br>
-3<br>
+When all previous listed steps have been fulfilled the following steps have to be undertaken:<br>
 
 Push tags
 ---------
-1<br>
-2<br>
-3<br>
+Once the release is finished, the artifacts are copied to staging repositories on Nexus and the tag are created, they have to be pushed to `community:droolsjbpm` or `product:jboss-integration`.
 
 ###Push Uberfire tag
-1<br>
-2<br>
-3<br>
+There are two scripts for pushing the Uberfie/Uberfire-extensions tag:<br>
+0.7.x:&nbsp;[011.Releasing_Uberfire_Uberfire-extensions_push-tag_0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x/job/011.Releasing_Uberfire_Uberfire-extensions_push-tag_0.7.x/)<br>
+0.8.x:&nbsp;[011.Releasing_Uberfire_Uberfire-extensions_push-tag-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x/job/011.Releasing_Uberfire_Uberfire-extensions_push-tag-0.8.x/)<br>
+
+This job runs **parametrized**.<br>
+
+**TARGET**:community or productized<br>
+**RELEASE_BRANCH**:name of the release branch that should be fetched for this tag<br>
+**TAG**:name of the tag<br>
 
 ###Push Dashbuilder tag
 1<br>
@@ -401,8 +396,8 @@ Push tags
 2<br>
 3<br>
 
-Release repositories to Nexus
------------------------------
+Release staging repositories
+----------------------------
 1<br>
 2<br>
 3<br>
@@ -438,7 +433,7 @@ Community
 2<br>
 3<br>
 
-###Run scripts for latests
+###Run scripts for latest
 1<br>
 2<br>
 3<br>
@@ -448,12 +443,11 @@ Community
 2<br>
 3<br>
   
-  
 Product
 -------
-1<br>
-2<br>
-3<br>
+In most cases if there is a new community release it has to be build also a tag for productization. Since the release procdure is the same and script driven the same scripts have to run. 
+The tag for productization can be based on a community branch, a community tag or a previous productization tag. All these possibilities are taken into account. <br>
+Also, when reached community **\*.Final** productization builds a product version. After this productization could ask for Update patches. 
 
 ###Integration Pack
 1<br>
