@@ -34,16 +34,18 @@ Table of content
         * *[Push Uberfire & Uberfire-extensions tag](#push-uberfire-tag)*
         * *[Push Dashbuilder tag](#push-dashbuilder-tag)*
         * *[Push KIE tags](#push-kie-tags)*
+    * **[Release repositories to Nexus](#release-repositories-to-nexus)**    
     * **[Community](#community)**    
-        *  *[Release repositories on Nexus](#release-repositories-on-nexus)*
         *  *[Updating to next development version](#update-to-next-development-version)*
             * *[Update Uberfire & Uberfire-extensions](#update-uberfire)*
             * *[Update Dashbuilder](#update-dashbuilder)*
             * *[Update KIE ](#update-kie)*
-        *  *[Copy artifacts to filemgmt.jboss.org](copy-community-artifacts)*
+        *  *[Copy artifacts to filemgmt.jboss.org](#copy-community-artifacts)*
+        *  *[Run scripts for latest and latestFinal](#run-scripts-for-latest)*
+        *  *[Enter release date on JIRA](#enter-release-date-on-jira)*
     * **[Product](#product)**
-        *  *[Integration Package](Intergation-Pack)*      
-
+        *  *[Integration Package](#integration-pack)*      
+        *  *[Fill out hand off report](#hand-off-report)*
         
         
 Introduction
@@ -399,13 +401,14 @@ Push tags
 2<br>
 3<br>
 
-Community
----------
+Release repositories to Nexus
+-----------------------------
 1<br>
 2<br>
 3<br>
 
-###Release repositories on Nexus
+Community
+---------
 1<br>
 2<br>
 3<br>
@@ -434,6 +437,17 @@ Community
 1<br>
 2<br>
 3<br>
+
+###Run scripts for latests
+1<br>
+2<br>
+3<br>
+  
+###Enter release date on JIRA
+1<br>
+2<br>
+3<br>
+  
   
 Product
 -------
@@ -445,7 +459,11 @@ Product
 1<br>
 2<br>
 3<br>
-  
+
+###Hand off report
+1<br>
+2<br>
+3<br>  
   
 
 
