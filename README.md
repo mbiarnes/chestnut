@@ -29,17 +29,20 @@ Table of content
         * *[kie-server-matrix](#kie-server-martix)*
         * *[kie-wb-smoke-tests-matrix](#kie-workbench-smoke-tests-matrix)*
         
-* **[post-release actions](#post-release-actions)**
+* **[Post release actions](#post-release-actions)**
     * **[Push tags to droolsjbpm/jboss-integration](#push-tags)**
         * *[Push Uberfire & Uberfire-extensions tag](#push-uberfire-tag)*
         * *[Push Dashbuilder tag](#push-dashbuilder-tag)*
         * *[Push KIE tags](#push-kie-tags)*
-    * **[Release repositories on Nexus](#release-repositories-on-nexus)**
-    * **[Updating to next development version](#update-to-next-development-version)**
-        * *[Update Uberfire & Uberfire-extensions](#update-uberfire)*
-        * *[Update Dashbuilder](#update-dashbuilder)*
-        * *[Update KIE ](#update-kie)*
-    * **[Miguelardo](#miguelardo-petardo)**    
+    * **[Community](#community)**    
+        *  *[Release repositories on Nexus](#release-repositories-on-nexus)*
+        *  *[Updating to next development version](#update-to-next-development-version)*
+            * *[Update Uberfire & Uberfire-extensions](#update-uberfire)*
+            * *[Update Dashbuilder](#update-dashbuilder)*
+            * *[Update KIE ](#update-kie)*
+        *  *[Copy artifacts to filemgmt.jboss.org](copy-community-artifacts)*
+    * **[Product](#product)**
+        *  *[Integration Package](Intergation-Pack)*      
 
         
         
@@ -381,53 +384,68 @@ Push tags
 2<br>
 3<br>
 
-Push Uberfire tag
------------------
+###Push Uberfire tag
 1<br>
 2<br>
 3<br>
 
-Push Dashbuilder tag
---------------------
+###Push Dashbuilder tag
 1<br>
 2<br>
 3<br>
 
-Push KIE tags
--------------
+###Push KIE tags
 1<br>
 2<br>
 3<br>
 
-Release repositories on Nexus
------------------------------
+Community
+---------
 1<br>
 2<br>
 3<br>
 
-Update to next development version
----------------------------------
+###Release repositories on Nexus
 1<br>
 2<br>
 3<br>
 
-Update Uberfire
---------------
+###Update to next development version
 1<br>
 2<br>
 3<br>
 
-Update Dashbuilder
------------------
+####Update Uberfire
 1<br>
 2<br>
 3<br>
 
-Update KIE
-----------
+####Update Dashbuilder
 1<br>
 2<br>
 3<br>
+
+####Update KIE
+1<br>
+2<br>
+3<br>
+  
+###Copy community Artifacts
+1<br>
+2<br>
+3<br>
+  
+Product
+-------
+1<br>
+2<br>
+3<br>
+
+###Integration Pack
+1<br>
+2<br>
+3<br>
+  
   
 
 
