@@ -15,8 +15,8 @@ Table of content
     * **[Mail to the bsig team](#mail-to-bsig-team)**
     
 * **[Releasing third party repositories](#releasing-third-party-repositories)**
-    * **[Releasing_Uberfire & Uberfire-extensions](#releasing-uberfire-uberfire-extensions)**
-    * **[Releasing_Dashbuilder](#releasing-dashbuilder)**
+    * **[Releasing Uberfire & Uberfire-extensions](#releasing-uberfire-uberfire-extensions)**
+    * **[Releasing Dashbuilder](#releasing-dashbuilder)**
                     
 * **[KIE releases](#kie-releases)**
     * **[Push KIE release branches](#push-kie-release-branch)**
@@ -24,7 +24,7 @@ Table of content
     * **[Sanity Checks](#sanity-checks)**
     * **[Cherry-picking](#cherry-picking)**
     * **[Copy deployed KIE binaries to Nexus](#copy-deployed-kie-to-nexus)**
-        * *[jbpm_test_coverage](#jbpm-test-coverage)*
+        * *[jbpm-test-coverage](#jbpm-test-coverage)*
         * *[kie-api-backwards-compat-check](#kie-api-backwards-compatible-check)*
         * *[kie-server-matrix](#kie-server-martix)*
         * *[kie-wb-smoke-tests-matrix](#kie-workbench-smoke-tests-matrix)*
@@ -64,7 +64,7 @@ The main views for releasing in Jenkins CI are:
 * **[Zanata](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/Zanata)**
 * **[uf-releases-0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x)**
 * **[uf-releases-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x)**
-* **[dashbuilder-releases](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases/)**
+* **[dashbuilder-releases 0.3.x and 0.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases%200.3.x%20and%200.4.x/)**
 * **[kie-releases-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/)**
 * **[kie-releases-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/)**
 
@@ -270,9 +270,6 @@ This job runs **parametrized**.<br>
 **RELEASE_BRANCH**:name of the release branch that should be fetched for this release<br>
 
 These jobs run the build and deploy. Looking at the Jenkins UI it can be controlled if the build failed and the if the unit tests run or failed.<br>
-If the artifacts will be downloaded to do some smoke tests, they can be downloaded here:<br>
-[KIE-internal-group](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org/) (binaries for prod tags)<br>
-[KIE-group](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/) (binaries for community releases)
 
 Sanity checks
 -------------
@@ -338,6 +335,11 @@ These jobs copy the locally deployed artifacts **(Deploy_dir)** to Nexus.<br>
 These jobs run **parametrized**:<br><br>
 **TARGET**:community or productized<br>
 
+The artifacts could be downloaded here:<br>
+community:&nbsp;[KIE-group](https://origin-repository.jboss.org/nexus/content/groups/kie-group/org/)<br>
+product:&nbsp;[KIE-internal-group](https://origin-repository.jboss.org/nexus/content/groups/kie-internal-group/org)<br>
+The artifacts could be downloaded here for people doing some smoke tests. In addition, when the artifacts were uploaded correctly, there will be run the following tests. 
+
 Additional test coverage
 ------------------------
 The previous job triggers the following listed additional tests
@@ -369,14 +371,14 @@ Once KIE moves to JDK 8 for builds, the check should be moved directly to the de
 
 Post release actions
 ====================
-When all previous listed steps have been fulfilled the following steps have to be undertaken:<br>
+When all previous listed steps have been fulfilled and there are no concerns about the upcoming release/tag the following steps have to be undertaken:<br>
 
 Push tags
 ---------
-Once the release is finished, the artifacts are copied to staging repositories on Nexus and the tag are created, they have to be pushed to `community:droolsjbpm` or `product:jboss-integration`.
+Once the release is finished, the artifacts are copied to staging repositories on Nexus and the tags are created, they have to be pushed to `community:droolsjbpm` or `product:jboss-integration`.
 
 ###Push Uberfire tag
-There are two scripts for pushing the Uberfie/Uberfire-extensions tag:<br>
+There are two scripts for pushing the Uberfire/Uberfire-extensions tag:<br>
 0.7.x:&nbsp;[011.Releasing_Uberfire_Uberfire-extensions_push-tag_0.7.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.7.x/job/011.Releasing_Uberfire_Uberfire-extensions_push-tag_0.7.x/)<br>
 0.8.x:&nbsp;[011.Releasing_Uberfire_Uberfire-extensions_push-tag-0.8.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/uf-releases-0.8.x/job/011.Releasing_Uberfire_Uberfire-extensions_push-tag-0.8.x/)<br>
 
@@ -387,20 +389,30 @@ This job runs **parametrized**.<br>
 **TAG**:name of the tag<br>
 
 ###Push Dashbuilder tag
-1<br>
-2<br>
-3<br>
+There is one script for pushing the Dashbuilder tag:<br>
+0.3.x and 0.4.x:&nbsp;[021.Releasing_Dashbuilder_push-tag](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/dashbuilder-releases%200.3.x%20and%200.4.x/job/021.Releasing_Dashbuilder_push-tag)<br>
+
+This job runs **parametrized**.<br>
+
+**TARGET**:community or productized<br>
+**RELEASE_BRANCH**:name of the release branch that should be fetched for this tag<br>
+**TAG**:name of the tag<br>
 
 ###Push KIE tags
-1<br>
-2<br>
-3<br>
+There are two scripts for pushing the KIE tags:<br>
+6.3.x:&nbsp;[033.Releasing_KIE_push-tags-6.3.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.3.x/job/033.Releasing_KIE_push-tags-6.3.x/)<br>
+6.4.x:&nbsp;[033.Releasing_KIE_push-tags-6.4.x](https://kie-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/view/kie-releases-6.4.x/job/033.Releasing_KIE_push-tags-6.4.x/)<br>
+
+This job runs **parametrized**.<br>
+
+**TARGET**:community or productized<br>
+**RELEASE_BRANCH**:name of the release branch that should be fetched for this tag<br>
+**TAG**:name of the tag<br>
+
 
 Release staging repositories
 ----------------------------
-1<br>
-2<br>
-3<br>
+Once the tags are pushed 
 
 Community
 ---------
@@ -445,7 +457,7 @@ Community
   
 Product
 -------
-In most cases if there is a new community release it has to be build also a tag for productization. Since the release procdure is the same and script driven the same scripts have to run. 
+In most cases if there is a new community release it has to be build also a tag for productization. Since the release procedure is the same and script driven the same scripts have to run. 
 The tag for productization can be based on a community branch, a community tag or a previous productization tag. All these possibilities are taken into account. <br>
 Also, when reached community **\*.Final** productization builds a product version. After this productization could ask for Update patches. 
 
