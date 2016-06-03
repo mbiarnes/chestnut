@@ -412,23 +412,24 @@ This job runs **parametrized**.<br>
 
 Release staging repositories
 ----------------------------
-Once the tags are pushed 
+Once the tags are pushed the **closed** releases on Nexus (kie-staging-repositories) have to be released by pushing the `release` button on Nexus. Depending if the release is for community or for productization
+the artifacts are copied and can be downloaded here:<br>
+[Kie group: community artifacts](https://repository.jboss.org/nexus/content/groups/kie-group/org/)<br>
+[Kie repository: artifacts for prod](https://origin-repository.jboss.org/nexus/content/repositories/kie/org)<br>
 
 Community
 ---------
-1<br>
-2<br>
-3<br>
-
+Having in mind that releases/tags for community or productization have different additional steps to perform in this chapter will be explainerd the "addtitional steps" for community.<br>
+ 
 ###Update to next development version
-1<br>
-2<br>
-3<br>
+When a \*.Final release is out the version of existing repositories on droolsjbpm have to be updated.<br>
+For example if a release with version 6.5.0.Final is out, the SNAPSHOT version before changing to this version was 6.5.0-SNAPSHOT. So the repositories have to be updated to the new 6.5.1-SNAPSHOT version. 
+This prevents that 6.5.0-SNAPSHOT keeps actualized and it is "newer" then the 6.5.0.Final.<br>
+As Uberfire and Dashbuilder are "released" too with each community release/tag of KIE their SNAPSHOT versions have to be updated too.<br>
 
 ####Update Uberfire
-1<br>
-2<br>
-3<br>
+Running these scripts the SNAPSHOT versions of Uberfire (and Uberfire-extensions) will be updated:<br>
+
 
 ####Update Dashbuilder
 1<br>
