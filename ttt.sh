@@ -2,6 +2,6 @@
 
 echo "Das ist ttt"
 
-./yyy.sh
+sh yyy.sh
 
 
