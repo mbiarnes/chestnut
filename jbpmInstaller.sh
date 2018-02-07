@@ -2,7 +2,7 @@
 
 # this script build the jbpm-installer and jbpm-installer full
 
-if [ "target" == "public" ]; then
+if [ "$target" == "public" ]; then
    URLgroup="public-jboss"
 else
    URLgroup="kie-group"
