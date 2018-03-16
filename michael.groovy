@@ -7,6 +7,4 @@ def targetProductBuild = ""
 
 return [kieVersion: kieVersionPre + date, appformerVersion: appformerVersionPre + date, erraiVersionNew:erraiVersionNewPre +date,  cutOffDate: date, reportDate: date,  sourceProductTag: sourceProductTag, targetProductBuild: targetProductBuild]  
 
-def kieVersion {
-    return kieVersionPre + date
-}
+echo "kieVersion: $kieVersion"
