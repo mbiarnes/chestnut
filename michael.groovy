@@ -5,6 +5,5 @@ def erraiVersionNewPre = "4.2.0."
 def sourceProductTag = ""
 def targetProductBuild = ""
 
-return [kieVersion: kieVersionPre + date, appformerVersion: appformerVersionPre + date, erraiVersionNew:erraiVersionNewPre +date,  cutOffDate: date, reportDate: date,  sourceProductTag: sourceProductTag, targetProductBuild: targetProductBuild]  
+return [kieVersion:kieVersionPre + date, appformerVersion:appformerVersionPre + date, erraiVersionNew:erraiVersionNewPre +date,  cutOffDate:date, reportDate:date,  sourceProductTag:sourceProductTag, targetProductBuild:targetProductBuild]  
 
-echo "kieVersionPre: ${kieVersionPre}"
