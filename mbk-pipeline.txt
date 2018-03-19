@@ -1,0 +1,24 @@
+pipeline {  
+  nodes {
+    node {
+      stage('Preparation') { // for display purposes
+        // Get some code from a GitHub repository
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], browser: [$class: 'GithubWeb', repoUrl: 'https://github.com/mbiarnes/chestnut'], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'chestnut']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/mbiarnes/chestnut.git']]]) 
+      }
+    }
+    
+    node {
+      stage('environment variables') {
+        sh 'echo "kieVersion1: " ${kieVersion}'
+        sh 'echo kieVersion2: ${kieVersion}'
+        sh 'echo kieVersion3: $kieVersion'
+      }  
+    }
+
+    node {
+      stage('echo') {
+        echo "organization: ${param.organization}"
+      }
+    }
+  }//end of nodes
+} //end of pipeline
