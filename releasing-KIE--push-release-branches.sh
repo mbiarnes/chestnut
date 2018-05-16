@@ -1,84 +1,62 @@
-# clone the build-bootstrap that contains the other build scripts
-if [ "$SOURCE" == "community-branch" ]; then
-     
-   # clone droolsjbm-build-bootstrap branch from droolsjbpm
-   git clone git@github.com:droolsjbpm/droolsjbpm-build-bootstrap.git --branch 6.4.x
+#!/bin/bash -e
 
-   # clone rest of the repos
-   ./droolsjbpm-build-bootstrap/script/git-clone-others.sh --branch 6.4.x --depth 70
-   
+# clone rest of the repos
+./droolsjbpm-build-bootstrap/script/git-clone-others.sh --branch $baseBranch --depth 70
+
+if [ "$source" == "community-branch" ]; then
+
    # checkout to local release names
-   ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $RELEASE_BRANCH 6.4.x
-   
-   # add new remote pointing to jboss-integration
-   ./droolsjbpm-build-bootstrap/script/git-add-remote-jboss-integration.sh
+   ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $releaseBranch $baseBranch
 
 fi
 
-if [ "$SOURCE" == "community-tag" ]; then
+if [ "$source" == "community-tag" ]; then
 
-   # clone droolsjbm-build-bootstrap branch from droolsjbpm
-   git clone git@github.com:droolsjbpm/droolsjbpm-build-bootstrap.git --branch 6.4.x
-
-   # clone rest of the repos
-   ./droolsjbpm-build-bootstrap/script/git-clone-others.sh --branch 6.4.x --depth 70
-
-   # add new remote pointing to jboss-integration
-   ./droolsjbpm-build-bootstrap/script/git-add-remote-jboss-integration.sh
-   
    # get the tags of community
    ./droolsjbpm-build-bootstrap/script/git-all.sh fetch --tags origin
    
    # checkout to local release names
-   ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $RELEASE_BRANCH $TAG
-
+   ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $releaseBranch $tag
 
 fi
    
-if [ "$SOURCE" == "production-tag" ]; then
+if [ "$source" == "production-tag" ]; then
 
-   # clone droolsjbm-build-bootstrap branch from jboss-integration
-   git clone git@github.com:jboss-integration/droolsjbpm-build-bootstrap.git --branch 6.4.x
-
-   # clone rest of the repos
-   ./droolsjbpm-build-bootstrap/script/git-clone-others.sh --branch 6.4.x --depth 70
-
-   # add new remote pointing to jboss-integration
-   ./droolsjbpm-build-bootstrap/script/git-add-remote-jboss-integration.sh
+   # add new remote pointing to gerrit
+   ./droolsjbpm-build-bootstrap/script/git-add-remote-gerrit.sh
    
-   # get the tags of jboss-integration
-   ./droolsjbpm-build-bootstrap/script/git-all.sh fetch --tags jboss-integration
+   # get the tags of gerrit
+   ./droolsjbpm-build-bootstrap/script/git-all.sh fetch gerrit --tags
    
    # checkout to local release names
-   ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $RELEASE_BRANCH $TAG
-
+   ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $releaseBranch $tag
 
 fi
 
 # upgrades the version to the release/tag version
-./droolsjbpm-build-bootstrap/script/release/update-version-all.sh $RELEASE_VERSION $TARGET
+./droolsjbpm-build-bootstrap/script/release/update-version-all.sh $releaseVersion $uberfireVersion $target
 
-# update kie-parent-metadata
-cd droolsjbpm-build-bootstrap/
 
-# change <version.org.uberfire>, <version.org.dashbuilder> and <version.org.jboss.errai>
-sed -i "$!N;s/<version.org.uberfire>.*.<\/version.org.uberfire>/<version.org.uberfire>$UBERFIRE_VERSION<\/version.org.uberfire>/;P;D" pom.xml
-sed -i "$!N;s/<version.org.dashbuilder>.*.<\/version.org.dashbuilder>/<version.org.dashbuilder>$DASHBUILDER_VERSION<\/version.org.dashbuilder>/;P;D" pom.xml
-sed -i "$!N;s/<version.org.jboss.errai>.*.<\/version.org.jboss.errai>/<version.org.jboss.errai>$ERRAI_VERSION<\/version.org.jboss.errai>/;P;D" pom.xml
-
+# change properties via sed as they don't update automatically
+#appformer
+cd appformer
+sed -i \
+-e "$!N;s/<version.org.kie>.*.<\/version.org.kie>/<version.org.kie>$releaseVersion<\/version.org.kie>/;" \
+-e "s/<version.org.jboss.errai>.*.<\/version.org.jboss.errai>/<version.org.jboss.errai>$erraiVersion<\/version.org.jboss.errai>/;P;D" \
+pom.xml
 cd ..
-pwd
+
+#droolsjbpm-build-bootstrap
+cd droolsjbpm-build-bootstrap/
+sed -i \
+-e "$!N;s/<version.org.uberfire>.*.<\/version.org.uberfire>/<version.org.uberfire>$uberfireVersion<\/version.org.uberfire>/;" \
+-e "s/<version.org.kie>.*.<\/version.org.kie>/<version.org.kie>$releaseVersion<\/version.org.kie>/;" \
+-e "s/<version.org.jboss.errai>.*.<\/version.org.jboss.errai>/<version.org.jboss.errai>$erraiVersion<\/version.org.jboss.errai>/;" \
+-e "s/<latestReleasedVersionFromThisBranch>.*.<\/latestReleasedVersionFromThisBranch>/<latestReleasedVersionFromThisBranch>$releaseVersion<\/latestReleasedVersionFromThisBranch>/;P;D" \
+pom.xml
+cd ..
 
 # git add and commit the version update changes 
 ./droolsjbpm-build-bootstrap/script/git-all.sh add .
-CommitMSG_1="upgraded to "
-CommitMSG_2="$CommitMSG_1$RELEASE_VERSION"
-./droolsjbpm-build-bootstrap/script/git-all.sh commit -m "$CommitMSG_2"
-
-# pushes the local release branches to droolsjbpm or to jboss-integration [IMPORTANT: "push -n" (--dryrun) should be replaced by "push" when script will be in production]
-if [ "$TARGET" == "community" ]; then
-  ./droolsjbpm-build-bootstrap/script/git-all.sh push origin -n $RELEASE_BRANCH
-else
-  ./droolsjbpm-build-bootstrap/script/git-all.sh push -n jboss-integration $RELEASE_BRANCH
-  ./droolsjbpm-build-bootstrap/script/git-all.sh push -n jboss-integration 6.4.x
-fi 
+commitMsg="Upgraded versions for release $releaseVersion"
+./droolsjbpm-build-bootstrap/script/git-all.sh commit -m "$commitMsg"
