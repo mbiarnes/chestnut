@@ -37,7 +37,7 @@ job("mbiarnes-test-by-dsl") {
             remote {
                 github("${organization}/${mainRepo}")
             }
-            branch ("${kieMainBranch}")
+            branch ("${mainBranch}")
             extensions {
                 relativeTargetDirectory("${mainRepo}")
                 localBranch {
