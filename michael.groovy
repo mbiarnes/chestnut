@@ -28,12 +28,13 @@ job("mbiarnes-test-by-dsl") {
             }
             branch ("${kieMainBranch}")
             extensions {
-                relativeTargetDirectory("scripts/droolsjbpm-build-bootstrap")
+                relativeTargetDirectory("droolsjbpm-build-bootstrap")
+                localBranch {
+                   localBranch("${kieMainBranch}")
+                } 
             }
-
         }
     }
-
     label("kie-releases")
 
     logRotator {
