@@ -1,2 +1,0 @@
-kie https://github.com/kiereleaseuser/chestnut.git (fetch)
-kie https://github.com/kiereleaseuser/chestnut.git (push)
