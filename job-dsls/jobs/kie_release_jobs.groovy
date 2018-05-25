@@ -1,14 +1,22 @@
 //Define Variables
 
 def kieVersion="master"
-def javadk="jdk1.8"
-def jaydekay="JDK1_8"
-def mvnToolEnv="APACHE_MAVEN_3_3_9"
-def mvnVersion="apache-maven-3.3.9"
+def javaVersion="kie-jdk1.8"
+def javaToolEnv="KIE_JDK1_8"
+def mvnToolEnv="KIE_MAVEN_3_3_9"
+def mvnVersion="kie-maven-3.3.9"
 def mvnHome="${mvnToolEnv}_HOME"
 def mvnOpts="-Xms2g -Xmx3g"
 def kieMainBranch="master"
 def organization="kiegroup"
+def m2Dir="\$HOME/.m2/repository"
+
+// creation of folder
+folder("KIE")
+folder("KIE/${kieMainBranch}")
+folder("KIE/${kieMainBranch}/releases")
+
+def folderPath="KIE/${kieMainBranch}/releases"
 
 
 def createReleaseBranches="""
@@ -63,7 +71,7 @@ sh \$WORKSPACE/scripts/droolsjbpm-build-bootstrap/script/release/errai-productiz
 
 // **************************************************************************
 
-job("createProdErraiVersion-kieReleases-${kieVersion}") {
+job("${folderPath}/createProdErraiVersion-kieReleases-${kieVersion}") {
 
     description("This job: <br> checksout the right source- upgrades the version in poms <br> - pushes the generated release branche to gerrit <br> IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.")
 
@@ -93,12 +101,12 @@ job("createProdErraiVersion-kieReleases-${kieVersion}") {
         numToKeep(10)
     }
 
-    jdk("${javadk}")
+    jdk("${javaVersion}")
 
     wrappers {
         timestamps()
         colorizeOutput()
-        toolenv("${mvnToolEnv}", "${jaydekay}")
+        toolenv("${mvnToolEnv}", "${javaToolEnv}")
         preBuildCleanup()
     }
 
@@ -114,7 +122,7 @@ job("createProdErraiVersion-kieReleases-${kieVersion}") {
 
     steps {
         environmentVariables {
-            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "/home/jenkins/.m2/repository", PATH : "\$${mvnHome}/bin:\$PATH")
+            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "${m2Dir}", PATH : "\$${mvnHome}/bin:\$PATH")
         }
         shell(prodErrai)
     }
@@ -122,7 +130,7 @@ job("createProdErraiVersion-kieReleases-${kieVersion}") {
 
 // **************************************************************************
 
-job("createAndPushReleaseBranches-kieReleases-${kieVersion}") {
+job("${folderPath}/createAndPushReleaseBranches-kieReleases-${kieVersion}") {
 
     description("This job: <br> checksout the right source- upgrades the version in poms <br> - modifies the kie-parent-metadata pom <br> - pushes the generated release branches to kiegroup <br> IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.")
 
@@ -156,12 +164,12 @@ job("createAndPushReleaseBranches-kieReleases-${kieVersion}") {
         numToKeep(10)
     }
 
-    jdk("${javadk}")
+    jdk("${javaVersion}")
 
     wrappers {
         timestamps()
         colorizeOutput()
-        toolenv("${mvnToolEnv}", "${jaydekay}")
+        toolenv("${mvnToolEnv}", "${javaToolEnv}")
         preBuildCleanup()
     }
 
@@ -177,7 +185,7 @@ job("createAndPushReleaseBranches-kieReleases-${kieVersion}") {
 
     steps {
         environmentVariables {
-            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "/home/jenkins/.m2/repository", PATH : "\$${mvnHome}/bin:\$PATH")
+            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "${m2Dir}", PATH : "\$${mvnHome}/bin:\$PATH")
         }
         shell(createReleaseBranches)
         shell(pushReleaseBranches)
@@ -186,7 +194,7 @@ job("createAndPushReleaseBranches-kieReleases-${kieVersion}") {
 
 // **************************************************************************************
 
-job("buildAndDeployLocally-kieReleases-${kieVersion}") {
+job("${folderPath}/buildAndDeployLocally-kieReleases-${kieVersion}") {
 
     description("This job: <br> - builds all repositories and deploys them locally <br> IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.")
 
@@ -214,7 +222,7 @@ job("buildAndDeployLocally-kieReleases-${kieVersion}") {
         numToKeep(10)
     }
 
-    jdk("${javadk}")
+    jdk("${javaVersion}")
 
     publishers {
         archiveJunit("**/TEST-*.xml")
@@ -228,7 +236,7 @@ job("buildAndDeployLocally-kieReleases-${kieVersion}") {
     wrappers {
         timestamps()
         colorizeOutput()
-        toolenv("${mvnToolEnv}", "${jaydekay}")
+        toolenv("${mvnToolEnv}", "${javaToolEnv}")
         preBuildCleanup()
     }
 
@@ -244,7 +252,7 @@ job("buildAndDeployLocally-kieReleases-${kieVersion}") {
 
     steps {
         environmentVariables {
-            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "/home/jenkins/.m2/repository", PATH : "\$${mvnHome}/bin:\$PATH")
+            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "${m2Dir}", PATH : "\$${mvnHome}/bin:\$PATH")
         }
         shell(deployLocally)
     }
@@ -252,7 +260,7 @@ job("buildAndDeployLocally-kieReleases-${kieVersion}") {
 
 // ********************************************************************************
 
-job("copyBinariesToNexus-kieReleases-${kieVersion}") {
+job("${folderPath}/copyBinariesToNexus-kieReleases-${kieVersion}") {
 
     description("This job: <br> - copies binaries from local dir to Nexus <br> IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.")
 
@@ -279,14 +287,14 @@ job("copyBinariesToNexus-kieReleases-${kieVersion}") {
         numToKeep(10)
     }
 
-    jdk("${javadk}")
+    jdk("${javaVersion}")
 
-    customWorkspace("\$HOME/workspace/buildAndDeployLocally-kieReleases-${kieVersion}")
+    customWorkspace("\$HOME/workspace/${folderPath}/buildAndDeployLocally-kieReleases-${kieVersion}")
 
     wrappers {
         timestamps()
         colorizeOutput()
-        toolenv("${mvnToolEnv}", "${jaydekay}")
+        toolenv("${mvnToolEnv}", "${javaToolEnv}")
     }
 
     configure { project ->
@@ -312,7 +320,7 @@ job("copyBinariesToNexus-kieReleases-${kieVersion}") {
 
     steps {
         environmentVariables {
-            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "/home/jenkins/.m2/repository", PATH : "\$${mvnHome}/bin:\$PATH")
+            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "${m2Dir}", PATH : "\$${mvnHome}/bin:\$PATH")
         }
         shell(copyToNexus)
     }
@@ -322,7 +330,7 @@ job("copyBinariesToNexus-kieReleases-${kieVersion}") {
 
 // **************************************************************************************
 
-matrixJob("jbpmTestCoverageMatrix-kieReleases-${kieVersion}") {
+matrixJob("${folderPath}/jbpmTestCoverageMatrix-kieReleases-${kieVersion}") {
 
     description("This job: <br> - Test coverage Matrix for jbpm <br> IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.")
     parameters {
@@ -332,7 +340,7 @@ matrixJob("jbpmTestCoverageMatrix-kieReleases-${kieVersion}") {
 
     axes {
         labelExpression("label-exp","linux&&mem4g")
-        jdk("$javadk")
+        jdk("$javaVersion")
     }
 
     logRotator {
@@ -351,6 +359,7 @@ matrixJob("jbpmTestCoverageMatrix-kieReleases-${kieVersion}") {
     publishers {
         archiveJunit("**/TEST-*.xml")
         mailer('mbiarnes@redhat.com', false, false)
+        wsCleanup()
     }
 
     configure { project ->
@@ -370,14 +379,14 @@ matrixJob("jbpmTestCoverageMatrix-kieReleases-${kieVersion}") {
             goals("clean verify -e -B -Dmaven.test.failure.ignore=true -Dintegration-tests")
             rootPOM("jbpm-test-coverage/pom.xml")
             mavenOpts("-Xmx3g")
-            providedSettings("org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig1438340407905")
+            providedSettings("1461de41-7511-4269-ae02-8eeb01fd059d")
         }
     }
 }
 
 // **********************************************************************************
 
-matrixJob("serverMatrix-kieReleases-${kieVersion}") {
+matrixJob("${folderPath}/serverMatrix-kieReleases-${kieVersion}") {
     description("This job: <br> - Runs the KIE Server integration tests on mutiple supported containers and JDKs <br> IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated. ")
 
     parameters {
@@ -386,7 +395,7 @@ matrixJob("serverMatrix-kieReleases-${kieVersion}") {
     };
 
     axes {
-        jdk("$javadk")
+        jdk("$javaVersion")
         text("container", "tomcat8", "wildfly11")
         labelExpression("label_exp", "linux&&mem8g")
     }
@@ -405,7 +414,7 @@ matrixJob("serverMatrix-kieReleases-${kieVersion}") {
         colorizeOutput()
         preBuildCleanup()
         configFiles {
-            mavenSettings("org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig1438340407905"){
+            mavenSettings("1461de41-7511-4269-ae02-8eeb01fd059d"){
                 variable("SETTINGS_XML_FILE")
             }
         }
@@ -425,6 +434,7 @@ matrixJob("serverMatrix-kieReleases-${kieVersion}") {
     publishers {
         archiveJunit("**/target/failsafe-reports/TEST-*.xml")
         mailer('mbiarnes@redhat.com', false, false)
+        wsCleanup()
     }
 
     steps {
@@ -439,14 +449,14 @@ matrixJob("serverMatrix-kieReleases-${kieVersion}") {
             properties("container.startstop.timeout.millis":"240000")
             properties("eap7.download.url":"http://download.devel.redhat.com/released/JBEAP-7/7.1.0/jboss-eap-7.1.0.zip")
             mavenOpts("-Xms1024m -Xmx1536m")
-            providedSettings("org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig1438340407905")
+            providedSettings("1461de41-7511-4269-ae02-8eeb01fd059d")
         }
     }
 }
 
 // ****************************************************************************************************
 
-matrixJob("wbSmokeTestsMatrix-kieReleases-${kieVersion}") {
+matrixJob("${folderPath}/wbSmokeTestsMatrix-kieReleases-${kieVersion}") {
     description("This job: <br> - Runs the smoke tests on KIE <br> IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated. ")
 
     parameters {
@@ -455,7 +465,7 @@ matrixJob("wbSmokeTestsMatrix-kieReleases-${kieVersion}") {
     };
 
     axes {
-        jdk("$javadk")
+        jdk("$javaVersion")
         text("container", "wildfly11", "tomcat8", "eap7")
         text("war", "kie-wb", "kie-drools-wb")
         labelExpression("label_exp", "linux&&mem8g&&gui-testing")
@@ -498,6 +508,7 @@ matrixJob("wbSmokeTestsMatrix-kieReleases-${kieVersion}") {
     publishers {
         archiveJunit("**/target/failsafe-reports/TEST-*.xml")
         mailer('mbiarnes@redhat.com', false, false)
+        wsCleanup()
     }
 
     steps {
@@ -512,14 +523,14 @@ matrixJob("wbSmokeTestsMatrix-kieReleases-${kieVersion}") {
             properties("webdriver.firefox.bin":"/opt/tools/firefox-38esr/firefox-bin")
             properties("eap7.download.url":"http://download.devel.redhat.com/released/JBEAP-7/7.1.0/jboss-eap-7.1.0.zip")
             mavenOpts("-Xms1024m -Xmx1536m")
-            providedSettings("org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig1438340407905")
+            providedSettings("1461de41-7511-4269-ae02-8eeb01fd059d")
         }
     }
 }
 
 // ************************************************************************************************
 
-job("pushTags-kieReleases-${kieVersion}") {
+job("${folderPath}/pushTags-kieReleases-${kieVersion}") {
 
     description("This job: <br> creates and pushes the tags for <br> community (kiegroup) or product (jboss-integration) <br> IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.")
 
@@ -548,7 +559,7 @@ job("pushTags-kieReleases-${kieVersion}") {
         numToKeep(10)
     }
 
-    jdk("${javadk}")
+    jdk("${javaVersion}")
 
     wrappers {
         timeout {
@@ -557,7 +568,7 @@ job("pushTags-kieReleases-${kieVersion}") {
         timestamps()
         preBuildCleanup()
         colorizeOutput()
-        toolenv("${mvnToolEnv}", "${jaydekay}")
+        toolenv("${mvnToolEnv}", "${javaToolEnv}")
     }
 
     configure { project ->
@@ -576,7 +587,7 @@ job("pushTags-kieReleases-${kieVersion}") {
 
     steps {
         environmentVariables {
-            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "/home/jenkins/.m2/repository", PATH : "\$${mvnHome}/bin:\$PATH")
+            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "${m2Dir}", PATH : "\$${mvnHome}/bin:\$PATH")
         }
         shell(pushTags)
     }
@@ -584,7 +595,7 @@ job("pushTags-kieReleases-${kieVersion}") {
 
 // ***********************************************************************************
 
-job("updateVersion-kieReleases-${kieVersion}") {
+job("${folderPath}/updateVersion-kieReleases-${kieVersion}") {
 
     description("This job: <br> updates the KIE repositories to a new developmenmt version<br>IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.")
 
@@ -614,7 +625,7 @@ job("updateVersion-kieReleases-${kieVersion}") {
         numToKeep(10)
     }
 
-    jdk("${javadk}")
+    jdk("${javaVersion}")
 
     wrappers {
         timeout {
@@ -623,7 +634,7 @@ job("updateVersion-kieReleases-${kieVersion}") {
         timestamps()
         preBuildCleanup()
         colorizeOutput()
-        toolenv("${mvnToolEnv}", "${jaydekay}")
+        toolenv("${mvnToolEnv}", "${javaToolEnv}")
     }
 
     configure { project ->
@@ -642,14 +653,14 @@ job("updateVersion-kieReleases-${kieVersion}") {
 
     steps {
         environmentVariables {
-            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "/home/jenkins/.m2/repository", PATH : "\$${mvnHome}/bin:\$PATH")
+            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "${m2Dir}", PATH : "\$${mvnHome}/bin:\$PATH")
         }
         shell(updateVersions)
     }
 }
 
 // ****************************************************************************************
-job("create-jbpm-installers-kieReleases-${kieVersion}") {
+job("${folderPath}/create-jbpm-installers-kieReleases-${kieVersion}") {
 
     description("This job: <br> creates the jbpm-installers  <br> IMPORTANT: makes only sense for community releases <br><b> Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.<b>")
 
@@ -677,9 +688,9 @@ job("create-jbpm-installers-kieReleases-${kieVersion}") {
         numToKeep(10)
     }
 
-    jdk("${javadk}")
+    jdk("${javaVersion}")
 
-    customWorkspace("\$HOME/workspace/buildAndDeployLocally-kieReleases-${kieVersion}")
+    customWorkspace("\$HOME/workspace/${folderPath}/buildAndDeployLocally-kieReleases-${kieVersion}")
 
     wrappers {
         timeout {
@@ -687,7 +698,7 @@ job("create-jbpm-installers-kieReleases-${kieVersion}") {
         }
         timestamps()
         colorizeOutput()
-        toolenv("${mvnToolEnv}", "${jaydekay}")
+        toolenv("${mvnToolEnv}", "${javaToolEnv}")
     }
 
     configure { project ->
@@ -711,7 +722,7 @@ job("create-jbpm-installers-kieReleases-${kieVersion}") {
 
     steps {
         environmentVariables {
-            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "/home/jenkins/.m2/repository", PATH : "\$${mvnHome}/bin:\$PATH")
+            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "${m2Dir}", PATH : "\$${mvnHome}/bin:\$PATH")
         }
         shell(createJbpmInstaller)
     }
@@ -719,7 +730,7 @@ job("create-jbpm-installers-kieReleases-${kieVersion}") {
 
 // ****************************************************************************************
 
-job("copyBinariesToFilemgmt-kieReleases-${kieVersion}") {
+job("${folderPath}/copyBinariesToFilemgmt-kieReleases-${kieVersion}") {
 
     description("This job: <br> copies kiegroup binaries to filemgmt.jbosss.org  <br> IMPORTANT: makes only sense for community releases <br><b> Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.<b>")
 
@@ -746,9 +757,9 @@ job("copyBinariesToFilemgmt-kieReleases-${kieVersion}") {
         numToKeep(10)
     }
 
-    jdk("${javadk}")
+    jdk("${javaVersion}")
 
-    customWorkspace("\$HOME/workspace/buildAndDeployLocally-kieReleases-${kieVersion}")
+    customWorkspace("\$HOME/workspace/${folderPath}/buildAndDeployLocally-kieReleases-${kieVersion}")
 
     wrappers {
         timeout {
@@ -756,7 +767,7 @@ job("copyBinariesToFilemgmt-kieReleases-${kieVersion}") {
         }
         timestamps()
         colorizeOutput()
-        toolenv("${mvnToolEnv}", "${jaydekay}")
+        toolenv("${mvnToolEnv}", "${javaToolEnv}")
     }
 
     configure { project ->
@@ -775,34 +786,9 @@ job("copyBinariesToFilemgmt-kieReleases-${kieVersion}") {
 
     steps {
         environmentVariables {
-            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "/home/jenkins/.m2/repository", PATH : "\$${mvnHome}/bin:\$PATH")
+            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "${m2Dir}", PATH : "\$${mvnHome}/bin:\$PATH")
         }
         shell(copyBinariesToFilemgmt)
     }
 }
 
-// **************************** VIEW to create on JENKINS CI *******************************************
-
-listView("kieReleases-${kieVersion}"){
-    description("all scripts needed for building a ${kieVersion} KIE Release")
-    jobs {
-        name("createAndPushReleaseBranches-kieReleases-${kieVersion}")
-        name("buildAndDeployLocally-kieReleases-${kieVersion}")
-        name("copyBinariesToNexus-kieReleases-${kieVersion}")
-        name("jbpmTestCoverageMatrix-kieReleases-${kieVersion}")
-        name("serverMatrix-kieReleases-${kieVersion}")
-        name("wbSmokeTestsMatrix-kieReleases-${kieVersion}")
-        name("pushTags-kieReleases-${kieVersion}")
-        name("updateVersion-kieReleases-${kieVersion}")
-        name("create-jbpm-installers-kieReleases-${kieVersion}")
-        name("copyBinariesToFilemgmt-kieReleases-${kieVersion}")
-        name("createProdErraiVersion-kieReleases-${kieVersion}")
-    }
-    columns {
-        status()
-        weather()
-        name()
-        lastSuccess()
-        lastFailure()
-    }
-}

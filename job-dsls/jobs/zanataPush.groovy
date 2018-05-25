@@ -2,21 +2,27 @@
 
 def kieMainBranch="master"
 def zanataVersion="7.8.0"
-def settingsXml="org.jenkinsci.plugins.configfiles.custom.CustomConfig1457025283676"
+def settingsXml="3a44127e-aa4e-4002-b244-35bdb78bc4af"
 
 def organization="kiegroup"
-def javadk="jdk1.8"
-def jaydekay="JDK1_8"
-def mvnToolEnv="APACHE_MAVEN_3_3_9"
+def javaVersion="kie-jdk1.8"
+def javaToolEnv="KIE_JDK1_8"
+def mvnToolEnv="KIE_MAVEN_3_5_0"
 def mvnHome="${mvnToolEnv}_HOME"
 def mvnOpts="-Xms2g -Xmx3g"
+def m2Dir="/home/jenkins/.m2"
 
+// creation of folder
+folder("KIE")
+folder("KIE/Zanata")
+
+def folderPath="KIE/Zanata"
 
 def zanataPushModules="""
 sh \$WORKSPACE/scripts/droolsjbpm-build-bootstrap/script/zanata/zanata-pushModules.sh
 """
 
-job("zanataPushModules-${zanataVersion}") {
+job("${folderPath}/zanataPushModules-${zanataVersion}") {
 
     description("This job: <br> pushes the i18n files to https://vendors.zanata.redhat.com<br>IMPORTANT: Created automatically by Jenkins job DSL plugin. Do not edit manually! The changes will get lost next time the job is generated.")
 
@@ -47,7 +53,7 @@ job("zanataPushModules-${zanataVersion}") {
         cron("H 2 * * 0,2,4,6")
     }
 
-    jdk("${javadk}")
+    jdk("${javaVersion}")
 
     wrappers {
         timeout {
@@ -56,7 +62,7 @@ job("zanataPushModules-${zanataVersion}") {
         timestamps()
         preBuildCleanup()
         colorizeOutput()
-        toolenv("${mvnToolEnv}", "${jaydekay}")
+        toolenv("${mvnToolEnv}", "${javaToolEnv}")
         configFiles {
             mavenSettings("${settingsXml}") {
                 variable("ZANATA")
@@ -80,7 +86,7 @@ job("zanataPushModules-${zanataVersion}") {
 
     steps {
         environmentVariables {
-            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "/home/jenkins/.m2/repository", PATH : "\$${mvnHome}/bin:\$PATH")
+            envs(MAVEN_OPTS : "${mvnOpts}", MAVEN_HOME : "\$${mvnHome}", MAVEN_REPO_LOCAL : "${m2Dir}", PATH : "\$${mvnHome}/bin:\$PATH")
         }
         shell(zanataPushModules)
     }
